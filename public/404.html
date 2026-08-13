@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dhruv Choudhary</title>
+    <script>
+      // GitHub Pages has no server-side router, so a direct hit on /kaabo 404s.
+      // Stash the intended path and bounce to the app shell, which restores it
+      // (see the inline script in index.html) so react-router picks up cleanly.
+      sessionStorage.redirect = location.href;
+      location.replace('/');
+    </script>
+  </head>
+  <body></body>
+</html>
