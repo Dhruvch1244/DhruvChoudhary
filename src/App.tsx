@@ -1,23 +1,27 @@
-import { Routes, Route } from 'react-router-dom';
-import AuroraBackground from './components/AuroraBackground';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import KaaboPage from './pages/KaaboPage';
+import { useState } from 'react';
+import MatrixRain from './components/MatrixRain';
+import Terminal from './components/Terminal';
 import './App.css';
 
+const DEEP_LINKS: Record<string, string> = {
+  '/': 'help',
+  '/kaabo': 'open kaabo',
+  '/projects': 'projects',
+  '/about': 'about',
+  '/experience': 'experience',
+  '/skills': 'skills',
+  '/contact': 'contact',
+  '/resume': 'resume',
+};
+
 export default function App() {
+  const [initialCommand] = useState(() => DEEP_LINKS[window.location.pathname] ?? 'help');
+
   return (
-    <>
-      <AuroraBackground />
-      <NavBar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/kaabo" element={<KaaboPage />} />
-        </Routes>
-      </main>
-      <Footer />
-    </>
+    <div className="crt-root">
+      <MatrixRain />
+      <div className="crt-overlay" aria-hidden="true" />
+      <Terminal initialCommand={initialCommand} />
+    </div>
   );
 }
