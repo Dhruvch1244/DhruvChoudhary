@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#030805"/>
-  <text x="8" y="42" font-family="Menlo, Consolas, monospace" font-weight="700" font-size="30" fill="#57ffa0">&gt;_</text>
+  <rect width="64" height="64" rx="10" fill="#f6f1e7"/>
+  <text x="32" y="43" font-family="Georgia, serif" font-weight="600" font-size="28" text-anchor="middle" fill="#221f1a">DC</text>
 </svg>

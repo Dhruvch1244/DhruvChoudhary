@@ -9,6 +9,9 @@ export const profile = {
   githubHandle: 'github.com/Dhruvch1244',
   linkedin: 'https://www.linkedin.com/in/dhruvchoudhary1',
   linkedinHandle: 'linkedin.com/in/dhruvchoudhary1',
+  tagline: 'I build resilient backend systems, real-time apps, and the occasional game people actually play.',
+  summary:
+    'Software Engineer at Fidelity Investments, working on enterprise Java backend services, large-scale file processing pipelines, and financial data applications. Comfortable across Spring Boot, REST APIs, AWS, Oracle, and Angular -- most at home turning a messy operational problem into a resilient, production-ready system. Outside of work: a real-time card game people actually play over a hotspot, and a lyric overlay with more visual engineering in it than the day job strictly requires.',
 };
 
 export type ExperienceEntry = {
@@ -159,4 +162,22 @@ export const publication = {
   venue: 'SSRN Research Publication, 2025',
   description:
     'First author -- led research, system design, and implementation, integrating LSTM, PPO, and financial market analytics into a unified investment recommendation platform.',
+};
+
+export const kaabo = {
+  name: 'Kaabo',
+  tagline: 'A real-time multiplayer card game -- Cabo/Kaboo, browser-based, no installs.',
+  github: 'https://github.com/Dhruvch1244/kaabo',
+  liveUrl: 'https://kaabo-7izx.onrender.com/',
+  players: '2-8 players',
+  howToHost:
+    'One device runs the Node.js server -- a laptop, or an Android phone via Termux. Everyone else just opens a browser, on the same network or over the internet once deployed.',
+  rules: [
+    'Everyone starts with 4 face-down cards. Lowest total wins. Ace = 1, number cards = face value, J = 11, Q = 12, black King = 13, red King = -1.',
+    'Look at your own bottom two cards once, at the start of a round.',
+    'On your turn: draw from the draw pile or discard pile, then swap it into your row or discard it.',
+    'A card discarded straight from a draw-pile draw can trigger its power: 7/8 peek your own card, 9/10 peek an opponent\'s, J blind-swaps any two cards, Q/King look at two cards then choose whether to swap.',
+    'Anyone can slap a matching rank onto the discard pile out of turn -- right guess drops a card, wrong guess adds a penalty.',
+    'Call "Kaabo" instead of drawing to end the round. If your total isn\'t strictly the lowest after the reveal, take a +10 penalty.',
+  ],
 };
