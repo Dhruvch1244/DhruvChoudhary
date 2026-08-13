@@ -13,7 +13,7 @@ export default function Kaabo() {
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
         <p className="eyebrow">Project</p>
-        <h1 className="page-header__title">{kaabo.name}</h1>
+        <h1 className="page-header__title gradient-text">{kaabo.name}</h1>
         <p className="hero__tagline">{kaabo.tagline}</p>
 
         <div className="kaabo__actions">

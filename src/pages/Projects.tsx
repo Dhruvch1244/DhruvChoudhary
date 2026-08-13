@@ -7,7 +7,15 @@ import { projects } from '../data/content';
 export default function Projects() {
   return (
     <>
-      <PageHeader eyebrow="02 — Projects" title="Things I've built" underline />
+      <PageHeader
+        eyebrow="02 — Projects"
+        title={
+          <>
+            Things I've <span className="gradient-text">built</span>
+          </>
+        }
+        underline
+      />
 
       <ol className="index-list">
         {projects.map((p, i) => {

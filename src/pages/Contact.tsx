@@ -6,7 +6,15 @@ import { profile } from '../data/content';
 export default function Contact() {
   return (
     <>
-      <PageHeader eyebrow="04 — Contact" title="Let's talk" underline />
+      <PageHeader
+        eyebrow="04 — Contact"
+        title={
+          <>
+            Let's <span className="gradient-text">talk</span>
+          </>
+        }
+        underline
+      />
 
       <Reveal>
         <p className="contact__intro">

@@ -9,7 +9,7 @@
   --accent-soft: #8fdcff;
   --accent-warm: #f2b45e;
 
-  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
@@ -47,11 +47,35 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
+  font-weight: 400;
+  line-height: 1.05;
   letter-spacing: -0.01em;
   margin: 0;
   color: var(--ink);
+}
+
+/* Signature move: an animated gradient sweep through the text fill, with a
+   soft glow riding along -- the same "the color is alive, not decoration"
+   idea as the lyric player's word-highlight, applied to headline emphasis. */
+.gradient-text {
+  background: linear-gradient(100deg, #5ec8f2 0%, #a78bfa 30%, #ff6ec7 55%, #5ec8f2 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(94, 200, 242, 0.3));
+  animation: gradientSweep 7s ease-in-out infinite;
+  font-style: italic;
+}
+
+@keyframes gradientSweep {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 p {

@@ -31,7 +31,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          Hi, I'm <span className="hero__name">Dhruv</span>
+          Hi, I'm <span className="hero__name gradient-text">Dhruv</span>
           <NodeLine className="hero__squiggle" />
         </motion.h1>
         <motion.p

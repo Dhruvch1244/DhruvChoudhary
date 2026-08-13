@@ -5,7 +5,15 @@ import { experience, education, publication, skillGroups, leadership } from '../
 export default function Experience() {
   return (
     <>
-      <PageHeader eyebrow="03 — Experience" title="Where the work happened" underline />
+      <PageHeader
+        eyebrow="03 — Experience"
+        title={
+          <>
+            Where the work <span className="gradient-text">happened</span>
+          </>
+        }
+        underline
+      />
 
       <ol className="timeline">
         {experience.map((job, i) => (
