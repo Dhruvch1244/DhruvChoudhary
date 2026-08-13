@@ -1,50 +1,42 @@
 type MarkProps = { className?: string };
 
-/** Wavy underline accent, sits under a headline word/phrase via negative margin-top in CSS. */
-export function Squiggle({ className }: MarkProps) {
+/** Underline accent: a thin line with small connected nodes, echoing the constellation motif. */
+export function NodeLine({ className }: MarkProps) {
   return (
     <svg viewBox="0 0 200 14" preserveAspectRatio="none" className={className} aria-hidden="true">
-      <path
-        d="M2 8.5 C 20 2, 34 13, 52 7 S 84 1, 100 8 S 132 14, 150 6 S 182 1, 198 7.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
+      <path d="M2 7 H198" stroke="currentColor" strokeWidth="1.4" opacity="0.5" />
+      <circle cx="2" cy="7" r="3" fill="currentColor" />
+      <circle cx="76" cy="7" r="2" fill="currentColor" opacity="0.7" />
+      <circle cx="150" cy="7" r="2.4" fill="currentColor" opacity="0.85" />
+      <circle cx="198" cy="7" r="3" fill="currentColor" />
     </svg>
   );
 }
 
-/** Small curved "look here" arrow, currentColor so it can sit inline with accent-colored text. */
+/** Small directional arrow used on links/hovers. */
 export function Arrow({ className }: MarkProps) {
   return (
-    <svg viewBox="0 0 40 34" className={className} aria-hidden="true">
-      <path
-        d="M3 5 C 16 3, 30 9, 25 22 C 23 27, 18 29, 14 27"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M9 22 C 11 25, 13 27, 14 27 C 14 24, 15 21, 17 19"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-/** Sketchy asterisk mark, three uneven crossing strokes rather than a geometric star. */
-export function Asterisk({ className }: MarkProps) {
+/** Coordinate/plus mark -- a small "+" like a graph axis origin, used as a footer/detail accent. */
+export function PlusMark({ className }: MarkProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <path d="M12 2.5 L11.5 21.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M3.5 7.5 L20 16.8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M20.5 8 L3.8 17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M12 4v16M4 12h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Orbit ring -- a dashed ellipse with a node on it, used as a small decorative accent. */
+export function OrbitRing({ className }: MarkProps) {
+  return (
+    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
+      <ellipse cx="20" cy="20" rx="18" ry="9" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" fill="none" opacity="0.6" />
+      <circle cx="38" cy="20" r="2" fill="currentColor" />
     </svg>
   );
 }

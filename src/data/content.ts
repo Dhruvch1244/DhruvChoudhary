@@ -157,6 +157,16 @@ export const projects: Project[] = [
   },
 ];
 
+export const leadership = {
+  role: 'Leap Alumni Contributor',
+  org: 'Fidelity Investments',
+  items: [
+    'Delivered technical knowledge-sharing sessions on GitHub Copilot, demonstrating AI-assisted development workflows and productivity practices.',
+    'Ran Level Up mentoring sessions for incoming interns -- enterprise engineering practices, collaboration workflows, modern tooling.',
+    'Organized three internal engagement events, coordinating planning, communication, and cross-functional participation.',
+  ],
+};
+
 export const publication = {
   title: 'Customized Investing in the Marketplace for Stocks using Deep Learning',
   venue: 'SSRN Research Publication, 2025',

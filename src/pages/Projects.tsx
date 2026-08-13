@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { Arrow } from '../components/Marks';
+import Reveal from '../components/Reveal';
 import { projects } from '../data/content';
 
 export default function Projects() {
@@ -26,17 +27,19 @@ export default function Projects() {
           );
           return (
             <li key={p.slug} className="index-list__row">
-              {isKaabo ? (
-                <Link to={href!} className="index-list__link">
-                  {inner}
-                </Link>
-              ) : href ? (
-                <a href={href} target="_blank" rel="noreferrer" className="index-list__link">
-                  {inner}
-                </a>
-              ) : (
-                <div className="index-list__link index-list__link--static">{inner}</div>
-              )}
+              <Reveal delay={Math.min(i * 0.06, 0.3)} y={20}>
+                {isKaabo ? (
+                  <Link to={href!} className="index-list__link">
+                    {inner}
+                  </Link>
+                ) : href ? (
+                  <a href={href} target="_blank" rel="noreferrer" className="index-list__link">
+                    {inner}
+                  </a>
+                ) : (
+                  <div className="index-list__link index-list__link--static">{inner}</div>
+                )}
+              </Reveal>
             </li>
           );
         })}

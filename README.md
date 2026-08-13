@@ -1,38 +1,47 @@
 # dhruvchoudhary.com
 
-Personal portfolio — a real multi-page site, editorial in spirit: serif
-headlines, warm paper background, a Swiss-grid layout, one restrained accent
-color, and small hand-drawn accent marks (a squiggle underline, a sketch
-arrow, an asterisk) instead of gradients, glassmorphism, or glow. React +
-TypeScript + Vite, no UI framework. Live at `dhruvchoudhary.com` on GitHub
-Pages.
+Personal portfolio — dark, techy, animated. A canvas constellation (drifting
+nodes, thin connecting lines, a few faint math glyphs) sits behind every
+page; content transitions in on scroll and between routes. React + Vite +
+TypeScript + Framer Motion. Live at `dhruvchoudhary.com` on GitHub Pages.
 
 ## Pages
 
-- **`/` Index** — intro, quick facts, three featured projects
+- **`/` Index** — parallax hero (fades/lifts on scroll), quick facts, three
+  featured projects
 - **`/projects`** — numbered index of every project, external links to
   source (Kaabo links to its own page instead)
-- **`/experience`** — work history timeline, toolbox, published research
+- **`/experience`** — work history timeline, toolbox, Leadership &
+  Community, published research
 - **`/contact`** — email / GitHub / LinkedIn
 - **`/kaabo`** — dedicated page for the card game: Play Now (live Render
   deployment), source, rules, how to host
+
+Every section reveals on scroll (`components/Reveal.tsx`, an
+`IntersectionObserver`-backed `whileInView`); route changes cross-fade via
+`AnimatePresence` in `App.tsx`. `MotionConfig reducedMotion="user"` makes all
+of it stand down under the OS-level reduce-motion setting.
 
 ## Structure
 
 ```
 src/
   components/
-    Nav.tsx          numbered sidebar nav (collapses to a top bar on mobile)
-    PageHeader.tsx    eyebrow + serif title + optional squiggle underline
-    Marks.tsx         hand-authored inline SVG accents: Squiggle, Arrow, Asterisk
+    Constellation.tsx  canvas node network -- drift, proximity links, cursor
+                        joins the graph, occasional math-glyph nodes
+    Nav.tsx             numbered sidebar nav (collapses to a top bar on mobile)
+    PageHeader.tsx      eyebrow + display title + node-line underline, animates in
+    Reveal.tsx          scroll-triggered fade/slide wrapper (Framer Motion)
+    Marks.tsx           inline SVG accents: NodeLine, Arrow, PlusMark, OrbitRing
     Footer.tsx
-  pages/              one component per route above
-  data/content.ts     resume facts -- profile, experience, skills, projects, kaabo
+  pages/                one component per route above
+  data/content.ts       resume facts -- profile, experience, skills, projects,
+                        leadership, publication, kaabo
 ```
 
-No design tokens borrowed from a component library -- `src/App.css` is the
-whole layout/visual system, `src/index.css` just the reset + palette/type
-tokens (`--paper`, `--ink`, `--accent`, `--font-serif`/`--font-sans`).
+`src/App.css` is the whole layout/visual system; `src/index.css` is just the
+reset plus palette/type tokens (`--void`, `--ink`, `--accent`,
+`--font-display`/`--font-sans`/`--font-mono`).
 
 ## Development
 
