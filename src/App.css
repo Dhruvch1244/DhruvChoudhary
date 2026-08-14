@@ -1373,6 +1373,114 @@ a.now-playing:hover {
   border-top: 1px solid var(--rule);
 }
 
+.case-study__playlist {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  max-width: var(--content-max);
+}
+
+/* ---------- Spotify playlist widget ---------- */
+.playlist-widget__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.playlist-widget__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.playlist-widget__bars span {
+  width: 3px;
+  background: var(--magenta);
+  border-radius: 1px;
+  animation: playlistBar 1.2s ease-in-out infinite;
+}
+
+.playlist-widget__bars span:nth-child(1) {
+  height: 35%;
+  animation-delay: -1.1s;
+}
+.playlist-widget__bars span:nth-child(2) {
+  height: 70%;
+  animation-delay: -0.8s;
+}
+.playlist-widget__bars span:nth-child(3) {
+  height: 100%;
+  animation-delay: -0.5s;
+}
+.playlist-widget__bars span:nth-child(4) {
+  height: 55%;
+  animation-delay: -0.25s;
+}
+.playlist-widget__bars span:nth-child(5) {
+  height: 80%;
+  animation-delay: -0.9s;
+}
+
+@keyframes playlistBar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playlist-widget__bars span {
+    animation: none;
+    transform: scaleY(0.7);
+  }
+}
+
+.playlist-widget__name {
+  font-weight: 700;
+  color: var(--ink);
+  flex: 1;
+  min-width: 0;
+}
+
+.playlist-widget__shuffle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.playlist-widget__shuffle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.playlist-widget__frame {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.playlist-widget__frame iframe {
+  display: block;
+}
+
+.playlist-widget--fallback {
+  color: var(--ink-soft);
+}
+
 .case-study__gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

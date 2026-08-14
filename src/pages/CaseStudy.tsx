@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
+import SpotifyPlaylistWidget from '../components/SpotifyPlaylistWidget';
 import { caseStudies, getCaseStudy } from '../data/caseStudies';
 
 function readingTime(study: NonNullable<ReturnType<typeof getCaseStudy>>) {
@@ -105,6 +106,13 @@ export default function CaseStudy() {
       <Reveal delay={0.2}>
         <p className="index-list__stack case-study__stack">{study.stack.join(' · ')}</p>
       </Reveal>
+
+      {study.spotifyPlaylist && (
+        <Reveal delay={0.22} className="case-study__playlist">
+          <p className="eyebrow">Listen while you look</p>
+          <SpotifyPlaylistWidget />
+        </Reveal>
+      )}
 
       {study.images && study.images.length > 0 && (
         <div className="case-study__gallery">

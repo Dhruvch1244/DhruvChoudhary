@@ -1,4 +1,6 @@
-const API = 'https://kaabo.dhruvchoudhary.com/api/spotify';
+// Update this if the deployed Render service ends up at a different URL
+// than the default assigned to the "dhruvchoudhary-spotify" service name.
+const API = 'https://dhruvchoudhary-spotify.onrender.com/api/spotify';
 
 export type NowPlaying =
   | { isPlaying: false }
@@ -24,7 +26,7 @@ export type Playlist = {
 };
 
 async function getJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${API}/${path}`);
+  const res = await fetch(`${API}/${path}`, { signal: AbortSignal.timeout(8000) });
   if (!res.ok) throw new Error('bad response');
   return res.json();
 }

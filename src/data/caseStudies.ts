@@ -12,6 +12,7 @@ export type CaseStudy = {
   liveUrl?: string;
   demoUrl?: string;
   researchLink?: string;
+  spotifyPlaylist?: boolean;
   research?: {
     title: string;
     venue: string;
@@ -47,6 +48,7 @@ export const caseStudies: CaseStudy[] = [
     github: 'https://github.com/Dhruvch1244/lyric-viewer',
     liveUrl: 'https://lyricoverlay.dhruvchoudhary.com/',
     demoUrl: 'https://lyricoverlay.dhruvchoudhary.com/demo.html',
+    spotifyPlaylist: true,
     images: [
       { src: '/case-studies/lyric-viewer/vinyl.jpg', alt: 'Vinyl preset', caption: 'Vinyl -- cover art as a record on a deck, turning one revolution every four beats once tempo locks.' },
       { src: '/case-studies/lyric-viewer/wormhole.jpg', alt: 'Wormhole preset', caption: 'Wormhole -- a tunnel that constricts and winds up in the seconds before a drop it already knows is coming.' },

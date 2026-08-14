@@ -1,53 +1,16 @@
-import { useEffect, useState } from 'react';
 import PageHeader from '../components/PageHeader';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying';
 import { profile } from '../data/content';
 import { getTopArtists, getPlaylists, type Artist, type Playlist } from '../lib/spotify';
+import { useSpotifyCache } from '../lib/useSpotifyCache';
 
 const CACHE_KEY = 'spotify-music-cache-v1';
-const CACHE_TTL = 1000 * 60 * 30; // 30 min
-
-function useCached<T>(key: string, fetcher: () => Promise<T>) {
-  const [data, setData] = useState<T | null>(null);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      try {
-        const cached = sessionStorage.getItem(key);
-        if (cached) {
-          const { data: cachedData, ts } = JSON.parse(cached);
-          if (Date.now() - ts < CACHE_TTL) {
-            if (!cancelled) setData(cachedData);
-            return;
-          }
-        }
-
-        const result = await fetcher();
-        sessionStorage.setItem(key, JSON.stringify({ data: result, ts: Date.now() }));
-        if (!cancelled) setData(result);
-      } catch {
-        if (!cancelled) setFailed(true);
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
-
-  return { data, failed };
-}
 
 export default function Music() {
-  const artists = useCached<Artist[]>(`${CACHE_KEY}-artists`, getTopArtists);
-  const playlists = useCached<Playlist[]>(`${CACHE_KEY}-playlists`, getPlaylists);
+  const artists = useSpotifyCache<Artist[]>(`${CACHE_KEY}-artists`, getTopArtists);
+  const playlists = useSpotifyCache<Playlist[]>(`${CACHE_KEY}-playlists`, getPlaylists);
 
   const showArtists = !artists.failed && artists.data && artists.data.length > 0;
   const showPlaylists = !playlists.failed && playlists.data && playlists.data.length > 0;

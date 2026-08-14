@@ -1,0 +1,14 @@
+{
+  "name": "dhruvchoudhary-spotify-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Read-only Spotify API proxy for dhruvchoudhary.com's music widgets.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
