@@ -1,11 +1,13 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { profile, education, projects } from '../data/content';
+import { profile, education, projects, skillGroups } from '../data/content';
 import { NodeLine, Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
+import Marquee from '../components/Marquee';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'batchpilot'];
+const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
 
 export default function Home() {
   const featured = FEATURED.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
@@ -31,7 +33,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          Hi, I'm <span className="hero__name gradient-text">Dhruv</span>
+          <span className="stroke-text">Hi, I'm</span> <span className="hero__name gradient-text">Dhruv</span>
           <NodeLine className="hero__squiggle" />
         </motion.h1>
         <motion.p
@@ -43,6 +45,8 @@ export default function Home() {
           {profile.tagline}
         </motion.p>
       </motion.section>
+
+      <Marquee items={TICKER} />
 
       <Reveal className="about">
         <p className="about__text">{profile.summary}</p>

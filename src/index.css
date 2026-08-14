@@ -5,13 +5,16 @@
   --ink-soft: #a8afc0;
   --ink-faint: #666e82;
   --rule: #1d2130;
-  --accent: #5ec8f2;
-  --accent-soft: #8fdcff;
+  --accent: #28e0ec;
+  --accent-soft: #7aecf4;
   --accent-warm: #f2b45e;
+  --magenta: #ff2e7e;
+  --violet: #9a6bff;
+  --cyan: #28e0ec;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
 
   --content-max: 720px;
   --page-max: 1240px;
@@ -48,24 +51,34 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   margin: 0;
   color: var(--ink);
 }
 
 /* Signature move: an animated gradient sweep through the text fill, with a
    soft glow riding along -- the same "the color is alive, not decoration"
-   idea as the lyric player's word-highlight, applied to headline emphasis. */
+   idea as the lyric player's word-highlight, applied to headline emphasis.
+   Same magenta -> violet -> cyan gradient as the lyric-viewer brand mark,
+   so all three properties read as one identity. */
 .gradient-text {
-  background: linear-gradient(100deg, #5ec8f2 0%, #a78bfa 30%, #ff6ec7 55%, #5ec8f2 100%);
+  background: linear-gradient(100deg, var(--magenta) 0%, var(--violet) 48%, var(--cyan) 100%, var(--magenta) 130%);
   background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 22px rgba(94, 200, 242, 0.3));
+  filter: drop-shadow(0 0 26px rgba(154, 107, 255, 0.35));
   animation: gradientSweep 7s ease-in-out infinite;
-  font-style: italic;
+}
+
+/* Poster-style outline text: fill drops out, just the stroke remains -- the
+   "OVERLAY" treatment from the lyric-viewer hero, for a second headline word
+   that reads as a shape rather than competing for attention with the gradient. */
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(242, 244, 248, 0.9);
 }
 
 @keyframes gradientSweep {
