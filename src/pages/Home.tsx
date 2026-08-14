@@ -81,7 +81,7 @@ export default function Home() {
           </div>
           <div className="facts__item">
             <dt>Currently</dt>
-            <dd>Executive Graduate Trainee</dd>
+            <dd>Software Engineer</dd>
           </div>
           <div className="facts__item">
             <dt>Education</dt>
