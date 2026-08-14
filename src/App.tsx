@@ -5,12 +5,15 @@ import Constellation from './components/Constellation';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import EasterEgg from './components/EasterEgg';
+import CommandPalette from './components/CommandPalette';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Kaabo from './pages/Kaabo';
 import CaseStudy from './pages/CaseStudy';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function PageTransition({ children }: { children: ReactNode }) {
@@ -32,10 +35,15 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="shell">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Constellation />
         <ScrollToTop />
+        <EasterEgg />
+        <CommandPalette />
         <Nav />
-        <div className="content">
+        <div className="content" id="main-content" tabIndex={-1}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
               <Route
@@ -83,6 +91,14 @@ export default function App() {
                 element={
                   <PageTransition>
                     <CaseStudy />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <PageTransition>
+                    <NotFound />
                   </PageTransition>
                 }
               />

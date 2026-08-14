@@ -2,13 +2,23 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
-import { getCaseStudy } from '../data/caseStudies';
+import { caseStudies, getCaseStudy } from '../data/caseStudies';
+
+function readingTime(study: NonNullable<ReturnType<typeof getCaseStudy>>) {
+  const words = [study.summary, study.problem, ...study.approach, ...study.outcomes, study.research?.note ?? '']
+    .join(' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>();
   const study = slug ? getCaseStudy(slug) : undefined;
 
   if (!study) return <Navigate to="/projects" replace />;
+
+  const related = caseStudies.filter((c) => c.slug !== study.slug);
 
   return (
     <>
@@ -17,7 +27,7 @@ export default function CaseStudy() {
       </Link>
 
       <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6 }}>
-        <p className="eyebrow">Case study</p>
+        <p className="eyebrow">Case study · {readingTime(study)} min read</p>
         <h1 className="page-header__title gradient-text">{study.name}</h1>
         <p className="hero__tagline">{study.tagline}</p>
 
@@ -100,6 +110,21 @@ export default function CaseStudy() {
             </Reveal>
           ))}
         </div>
+      )}
+
+      {related.length > 0 && (
+        <Reveal className="case-study__related">
+          <p className="eyebrow">Also see</p>
+          <div className="case-study__related-grid">
+            {related.map((r) => (
+              <Link key={r.slug} to={`/projects/${r.slug}`} className="case-study__related-card">
+                <span className="case-study__related-name">{r.name}</span>
+                <span className="case-study__related-tagline">{r.tagline}</span>
+                <Arrow className="text-link__arrow" />
+              </Link>
+            ))}
+          </div>
+        </Reveal>
       )}
     </>
   );

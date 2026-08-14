@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
+import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import { kaabo } from '../data/content';
 
 export default function Kaabo() {
@@ -25,6 +26,8 @@ export default function Kaabo() {
           </a>
           <span className="kaabo__players">{kaabo.players}</span>
         </div>
+
+        <KaaboLiveBadge />
       </motion.div>
 
       <div className="kaabo__grid">

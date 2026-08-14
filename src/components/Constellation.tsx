@@ -119,7 +119,13 @@ export default function Constellation() {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
-      const [r, g, b] = hueAt(scrollProgress);
+      // Colors are tuned against a near-black backdrop by default; on the
+      // light theme the same low-alpha bright hues wash out against white,
+      // so darken the fill and boost alpha to keep the same visual weight.
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const [hr, hg, hb] = hueAt(scrollProgress);
+      const [r, g, b] = isLight ? [hr * 0.55, hg * 0.55, hb * 0.55] : [hr, hg, hb];
+      const alphaMult = isLight ? 1.9 : 1;
       const linkBoost = 1 + energy * 1.6;
       const nodeBoost = 1 + energy * 0.9;
 
@@ -132,7 +138,7 @@ export default function Constellation() {
           const dy = a.y - b2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK_DIST) {
-            const alpha = Math.min(0.4, 0.16 * (1 - dist / LINK_DIST) * linkBoost);
+            const alpha = Math.min(0.4 * alphaMult, 0.16 * (1 - dist / LINK_DIST) * linkBoost * alphaMult);
             ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -146,7 +152,7 @@ export default function Constellation() {
           const dy = nodes[i].y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MOUSE_LINK_DIST) {
-            ctx.strokeStyle = `rgba(${Math.min(255, r + 50)}, ${Math.min(255, g + 20)}, ${Math.min(255, b + 15)}, ${0.35 * (1 - dist / MOUSE_LINK_DIST)})`;
+            ctx.strokeStyle = `rgba(${Math.min(255, r + 50)}, ${Math.min(255, g + 20)}, ${Math.min(255, b + 15)}, ${0.35 * (1 - dist / MOUSE_LINK_DIST) * alphaMult})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -160,19 +166,19 @@ export default function Constellation() {
       for (const n of nodes) {
         if (n.glyph) {
           ctx.font = `${n.size}px "JetBrains Mono", monospace`;
-          ctx.fillStyle = `rgba(${Math.min(255, r + 55)}, ${Math.min(255, g + 20)}, ${Math.min(255, b + 20)}, ${Math.min(0.75, 0.4 * nodeBoost)})`;
+          ctx.fillStyle = `rgba(${Math.min(255, r + 55)}, ${Math.min(255, g + 20)}, ${Math.min(255, b + 20)}, ${Math.min(0.75 * alphaMult, 0.4 * nodeBoost * alphaMult)})`;
           ctx.fillText(n.glyph, n.x, n.y);
         } else {
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.size * nodeBoost, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(0.9, 0.55 * nodeBoost)})`;
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(0.9, 0.55 * nodeBoost * alphaMult)})`;
           ctx.fill();
         }
       }
 
       if (mouse.active) {
         const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 90);
-        glow.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.08)`);
+        glow.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.08 * alphaMult})`);
         glow.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();

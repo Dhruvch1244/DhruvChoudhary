@@ -15,6 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <title>Dhruv Choudhary — Software Engineer</title>
     <script>
+      // Set the theme before first paint so there's no flash of the wrong
+      // theme while React boots. Falls back to system preference.
+      (function () {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+
       // GitHub Pages SPA routing fallback: restore the real path that 404.html stashed.
       (function () {
         var redirect = sessionStorage.redirect;

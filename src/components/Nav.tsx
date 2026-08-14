@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { profile } from '../data/content';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { to: '/', label: 'Index', num: '01' },
@@ -11,9 +12,12 @@ const LINKS = [
 export default function Nav() {
   return (
     <header className="nav">
-      <NavLink to="/" className="nav__brand">
-        {profile.name}
-      </NavLink>
+      <div className="nav__top">
+        <NavLink to="/" className="nav__brand">
+          {profile.name}
+        </NavLink>
+        <ThemeToggle />
+      </div>
 
       <nav className="nav__links" aria-label="Primary">
         {LINKS.map((link) => (

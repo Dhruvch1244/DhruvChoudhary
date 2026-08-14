@@ -11,6 +11,8 @@
   --magenta: #ff2e7e;
   --violet: #9a6bff;
   --cyan: #28e0ec;
+  --glass: rgba(7, 8, 12, 0.6);
+  --glass-strong: rgba(13, 15, 22, 0.88);
 
   --font-display: 'Bebas Neue', Impact, sans-serif;
   --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -19,6 +21,23 @@
   --content-max: 720px;
   --page-max: 1240px;
   color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --void: #f7f5f2;
+  --surface: #ffffff;
+  --ink: #14151a;
+  --ink-soft: #43454f;
+  --ink-faint: #6c6f7c;
+  --rule: #e0ded8;
+  --accent: #0e8b96;
+  --accent-soft: #0a6a73;
+  --magenta: #d21266;
+  --violet: #6a3ce0;
+  --cyan: #0e8b96;
+  --glass: rgba(255, 255, 255, 0.65);
+  --glass-strong: rgba(255, 255, 255, 0.88);
+  color-scheme: light;
 }
 
 * {
@@ -114,6 +133,30 @@ button {
 ::selection {
   background: var(--accent);
   color: var(--void);
+}
+
+:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 200;
+  background: var(--magenta);
+  color: #0a0710;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
 }
 
 @media (prefers-reduced-motion: reduce) {
