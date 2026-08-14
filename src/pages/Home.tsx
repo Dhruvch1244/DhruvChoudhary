@@ -5,6 +5,7 @@ import { profile, education, projects, skillGroups } from '../data/content';
 import { NodeLine, Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import Marquee from '../components/Marquee';
+import GitHubStats from '../components/GitHubStats';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'batchpilot'];
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
@@ -62,7 +63,10 @@ export default function Home() {
       <Marquee items={TICKER} />
 
       <Reveal className="about">
-        <p className="about__text">{profile.summary}</p>
+        <div className="about__header">
+          <img src="/img/avatar.jpg" alt="Dhruv Choudhary" className="about__photo" />
+          <p className="about__text">{profile.summary}</p>
+        </div>
 
         <dl className="facts">
           <div className="facts__item">
@@ -82,6 +86,8 @@ export default function Home() {
             </dd>
           </div>
         </dl>
+
+        <GitHubStats />
       </Reveal>
 
       <section className="selected-work">

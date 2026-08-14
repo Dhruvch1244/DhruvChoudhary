@@ -3,6 +3,9 @@ import PageHeader from '../components/PageHeader';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import { projects } from '../data/content';
+import { caseStudies } from '../data/caseStudies';
+
+const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 
 export default function Projects() {
   return (
@@ -20,7 +23,9 @@ export default function Projects() {
       <ol className="index-list">
         {projects.map((p, i) => {
           const isKaabo = p.slug === 'kaabo';
-          const href = isKaabo ? '/kaabo' : p.github;
+          const isCaseStudy = CASE_STUDY_SLUGS.has(p.slug);
+          const internalHref = isKaabo ? '/kaabo' : isCaseStudy ? `/projects/${p.slug}` : null;
+          const href = internalHref ?? p.github;
           const inner = (
             <>
               <span className="index-list__num">{String(i + 1).padStart(2, '0')}</span>
@@ -36,8 +41,8 @@ export default function Projects() {
           return (
             <li key={p.slug} className="index-list__row">
               <Reveal delay={Math.min(i * 0.06, 0.3)} y={20}>
-                {isKaabo ? (
-                  <Link to={href!} className="index-list__link">
+                {internalHref ? (
+                  <Link to={internalHref} className="index-list__link">
                     {inner}
                   </Link>
                 ) : href ? (

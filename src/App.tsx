@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Kaabo from './pages/Kaabo';
+import CaseStudy from './pages/CaseStudy';
 import './App.css';
 
 function PageTransition({ children }: { children: ReactNode }) {
@@ -72,6 +73,14 @@ export default function App() {
                 element={
                   <PageTransition>
                     <Kaabo />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/projects/:slug"
+                element={
+                  <PageTransition>
+                    <CaseStudy />
                   </PageTransition>
                 }
               />
