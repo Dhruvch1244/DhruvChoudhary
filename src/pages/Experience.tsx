@@ -23,11 +23,13 @@ export default function Experience() {
               <div className="timeline__main">
                 <h3 className="timeline__role">{job.role}</h3>
                 <p className="timeline__org">{job.org}</p>
-                <ul className="timeline__bullets">
-                  {job.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
+                {job.bullets.length > 0 && (
+                  <ul className="timeline__bullets">
+                    {job.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                )}
                 <p className="timeline__stack">{job.stack.join(' · ')}</p>
               </div>
             </Reveal>

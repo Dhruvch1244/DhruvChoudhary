@@ -31,6 +31,13 @@ export const experience: ExperienceEntry[] = [
     org: 'Fidelity Investments, Bangalore',
     role: 'Software Engineer',
     period: 'Aug 2026 - Present',
+    bullets: [],
+    stack: ['Java', 'Spring Boot', 'MyBatis', 'Oracle', 'Angular', 'Docker', 'Kubernetes', 'AWS'],
+  },
+  {
+    org: 'Fidelity Investments, Bangalore',
+    role: 'Executive Graduate Trainee',
+    period: 'Aug 2025 - Jul 2026',
     bullets: [
       'Built/enhanced 10+ Java Spring Boot services for enterprise financial apps, processing high-volume fixed-income data.',
       'Designed file pipelines (validation, parsing, orchestration) supporting 200K+ records/file.',
