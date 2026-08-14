@@ -2,12 +2,14 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { profile, education, projects, skillGroups } from '../data/content';
+import { caseStudies } from '../data/caseStudies';
 import { NodeLine, Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import GitHubStats from '../components/GitHubStats';
 
-const FEATURED = ['kaabo', 'lyric-viewer', 'batchpilot'];
+const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
+const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
 
 export default function Home() {
@@ -96,8 +98,9 @@ export default function Home() {
         </Reveal>
         <div className="work-list">
           {featured.map((p, i) => {
-            const to = p.slug === 'kaabo' ? '/kaabo' : p.github ?? '/projects';
-            const external = p.slug !== 'kaabo';
+            const isKaabo = p.slug === 'kaabo';
+            const isCaseStudy = CASE_STUDY_SLUGS.has(p.slug);
+            const internalTo = isKaabo ? '/kaabo' : isCaseStudy ? `/projects/${p.slug}` : null;
             const content = (
               <>
                 <span className="work-list__num">0{i + 1}</span>
@@ -108,14 +111,14 @@ export default function Home() {
             );
             return (
               <Reveal key={p.slug} delay={i * 0.08} y={20} className="work-list__row">
-                {external ? (
-                  <a href={to} target="_blank" rel="noreferrer" className="work-list__link">
-                    {content}
-                  </a>
-                ) : (
-                  <Link to={to} className="work-list__link">
+                {internalTo ? (
+                  <Link to={internalTo} className="work-list__link">
                     {content}
                   </Link>
+                ) : (
+                  <a href={p.github ?? '/projects'} target="_blank" rel="noreferrer" className="work-list__link">
+                    {content}
+                  </a>
                 )}
               </Reveal>
             );

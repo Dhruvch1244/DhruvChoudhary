@@ -114,33 +114,6 @@ export const projects: Project[] = [
     github: 'https://github.com/Dhruvch1244/lyric-viewer',
   },
   {
-    slug: 'batchpilot',
-    name: 'BatchPilot',
-    tagline: 'SSH environment manager, terminal, and file-transfer console',
-    description:
-      'Spring Boot + Angular console for batch ops across SSH environments -- full browser terminal (xterm.js), one-off command exec, SFTP file manager, live YARN app tracking. Packaged as one self-contained jar.',
-    stack: ['Spring Boot', 'Angular', 'WebSocket', 'SSH/SFTP'],
-    github: 'https://github.com/Dhruvch1244/BatchPilot',
-  },
-  {
-    slug: 'review-grader',
-    name: 'Review Grader',
-    tagline: 'live scoring platform for a 144-person capstone program',
-    description:
-      'Scores teams/individuals across 4 review checkpoints for six classes running in parallel -- rubric-based scoring, auto-generated Q&A, offline-first sync, full analytics dashboard.',
-    stack: ['Angular', 'Express', 'TypeScript', 'SQLite'],
-    github: 'https://github.com/Dhruvch1244/review-grader',
-  },
-  {
-    slug: 'file-viewer',
-    name: 'Bloomberg File Viewer',
-    tagline: 'native desktop viewer for 2GB+ Bloomberg DIF/GETDATA files',
-    description:
-      '.NET 8 / WPF app, stays responsive on multi-gigabyte files via virtualized scrolling, unmanaged row index, inline editing with full undo, Excel-style column filtering, multi-format export.',
-    stack: ['.NET 8', 'WPF', 'C#'],
-    github: 'https://github.com/Dhruvch1244/File-Viewer',
-  },
-  {
     slug: 'investlytic',
     name: 'Investlytic',
     tagline: 'RL-driven stock trading platform',
