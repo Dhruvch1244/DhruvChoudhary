@@ -13,6 +13,7 @@ export default function Nav() {
   return (
     <header className="nav">
       <div className="nav__top">
+        <img src="/img/avatar-2.jpg" alt={profile.name} className="nav__avatar" />
         <NavLink to="/" className="nav__brand">
           {profile.name}
         </NavLink>

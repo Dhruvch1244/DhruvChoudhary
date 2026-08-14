@@ -37,12 +37,23 @@
   margin-bottom: 48px;
 }
 
+.nav__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--rule);
+}
+
 .nav__brand {
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--ink);
+  flex: 1;
+  min-width: 0;
 }
 
 .theme-toggle {
