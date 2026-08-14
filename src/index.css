@@ -97,7 +97,7 @@ h3 {
    that reads as a shape rather than competing for attention with the gradient. */
 .stroke-text {
   color: transparent;
-  -webkit-text-stroke: 2px rgba(242, 244, 248, 0.9);
+  -webkit-text-stroke: 2px var(--ink);
 }
 
 @keyframes gradientSweep {

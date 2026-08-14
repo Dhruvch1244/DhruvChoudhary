@@ -33,11 +33,16 @@ export default function CaseStudy() {
 
         <div className="case-study__meta">
           <span className="case-study__role">{study.role}</span>
-          {(study.github || study.liveUrl || study.researchLink) && (
+          {(study.github || study.liveUrl || study.demoUrl || study.researchLink) && (
             <div className="case-study__links">
               {study.liveUrl && (
                 <a href={study.liveUrl} target="_blank" rel="noreferrer" className="btn-outline">
-                  Live <Arrow className="text-link__arrow" />
+                  Try it <Arrow className="text-link__arrow" />
+                </a>
+              )}
+              {study.demoUrl && (
+                <a href={study.demoUrl} target="_blank" rel="noreferrer" className="text-link">
+                  Live demo in your browser
                 </a>
               )}
               {study.github && (

@@ -42,6 +42,16 @@ export default function Contact() {
               {profile.linkedinHandle}
             </a>
           </li>
+          <li>
+            <a href={profile.twitter} target="_blank" rel="noreferrer">
+              {profile.twitterHandle} on X
+            </a>
+          </li>
+          <li>
+            <a href={profile.instagram} target="_blank" rel="noreferrer">
+              {profile.instagramHandle} on Instagram
+            </a>
+          </li>
           <li>{profile.location}</li>
         </ul>
       </Reveal>

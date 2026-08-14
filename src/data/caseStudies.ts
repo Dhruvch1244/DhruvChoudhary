@@ -10,6 +10,7 @@ export type CaseStudy = {
   outcomes: string[];
   github?: string;
   liveUrl?: string;
+  demoUrl?: string;
   researchLink?: string;
   research?: {
     title: string;
@@ -44,6 +45,8 @@ export const caseStudies: CaseStudy[] = [
       'Packaged for the Microsoft Store (MSIX) in addition to a direct signed installer.',
     ],
     github: 'https://github.com/Dhruvch1244/lyric-viewer',
+    liveUrl: 'https://lyricoverlay.dhruvchoudhary.com/',
+    demoUrl: 'https://lyricoverlay.dhruvchoudhary.com/demo.html',
     images: [
       { src: '/case-studies/lyric-viewer/vinyl.jpg', alt: 'Vinyl preset', caption: 'Vinyl -- cover art as a record on a deck, turning one revolution every four beats once tempo locks.' },
       { src: '/case-studies/lyric-viewer/wormhole.jpg', alt: 'Wormhole preset', caption: 'Wormhole -- a tunnel that constricts and winds up in the seconds before a drop it already knows is coming.' },

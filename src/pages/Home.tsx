@@ -1,15 +1,19 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { profile, education, projects, skillGroups } from '../data/content';
-import { caseStudies } from '../data/caseStudies';
+import { profile, education, projects, skillGroups, kaabo } from '../data/content';
+import { caseStudies, getCaseStudy } from '../data/caseStudies';
 import { NodeLine, Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import GitHubStats from '../components/GitHubStats';
+import KaaboLiveBadge from '../components/KaaboLiveBadge';
+import GitHubActivity from '../components/GitHubActivity';
+import TwitterFeed from '../components/TwitterFeed';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
+const lyricOverlay = getCaseStudy('lyric-viewer')!;
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
 
 export default function Home() {
@@ -93,6 +97,41 @@ export default function Home() {
         <GitHubStats />
       </Reveal>
 
+      <section className="products">
+        <Reveal>
+          <p className="eyebrow">Try them yourself</p>
+          <h2 className="section-title">Live products, not demos</h2>
+        </Reveal>
+        <div className="products__grid">
+          <Reveal className="products__card" delay={0.05}>
+            <h3 className="products__name">{kaabo.name}</h3>
+            <p className="products__tagline">{kaabo.tagline}</p>
+            <div className="products__actions">
+              <a href={kaabo.liveUrl} target="_blank" rel="noreferrer" className="btn-outline">
+                Play now <Arrow className="text-link__arrow" />
+              </a>
+              <Link to="/kaabo" className="text-link">
+                How it works
+              </Link>
+            </div>
+            <KaaboLiveBadge />
+          </Reveal>
+
+          <Reveal className="products__card" delay={0.1}>
+            <h3 className="products__name">{lyricOverlay.name}</h3>
+            <p className="products__tagline">{lyricOverlay.tagline}</p>
+            <div className="products__actions">
+              <a href={lyricOverlay.liveUrl} target="_blank" rel="noreferrer" className="btn-outline">
+                Get it <Arrow className="text-link__arrow" />
+              </a>
+              <a href={lyricOverlay.demoUrl} target="_blank" rel="noreferrer" className="text-link">
+                Try the browser demo
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="selected-work">
         <Reveal>
           <h2 className="section-title">Selected work</h2>
@@ -130,6 +169,31 @@ export default function Home() {
             View all projects <Arrow className="text-link__arrow" />
           </Link>
         </Reveal>
+      </section>
+
+      <section className="elsewhere">
+        <Reveal>
+          <p className="eyebrow">Off the clock</p>
+          <h2 className="section-title">Elsewhere</h2>
+        </Reveal>
+        <div className="elsewhere__grid">
+          <Reveal className="elsewhere__col" delay={0.05}>
+            <GitHubActivity />
+            <div className="elsewhere__social">
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="elsewhere__social-link">
+                <span>LinkedIn</span>
+                <span className="elsewhere__social-sub">{profile.linkedinHandle}</span>
+              </a>
+              <a href={profile.instagram} target="_blank" rel="noreferrer" className="elsewhere__social-link">
+                <span>Instagram</span>
+                <span className="elsewhere__social-sub">{profile.instagramHandle}</span>
+              </a>
+            </div>
+          </Reveal>
+          <Reveal className="elsewhere__col" delay={0.1}>
+            <TwitterFeed />
+          </Reveal>
+        </div>
       </section>
     </>
   );

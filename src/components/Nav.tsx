@@ -42,6 +42,12 @@ export default function Nav() {
         <a href={profile.linkedin} target="_blank" rel="noreferrer">
           LinkedIn
         </a>
+        <a href={profile.twitter} target="_blank" rel="noreferrer">
+          X / Twitter
+        </a>
+        <a href={profile.instagram} target="_blank" rel="noreferrer">
+          Instagram
+        </a>
         <a href={`mailto:${profile.email}`}>Email</a>
       </div>
     </header>
