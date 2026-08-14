@@ -29,6 +29,9 @@ export default function Nav() {
       </nav>
 
       <div className="nav__social">
+        <a href="/resume.pdf" target="_blank" rel="noreferrer">
+          Résumé
+        </a>
         <a href={profile.github} target="_blank" rel="noreferrer">
           GitHub
         </a>

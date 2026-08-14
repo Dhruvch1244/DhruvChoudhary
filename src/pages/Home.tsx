@@ -44,6 +44,19 @@ export default function Home() {
         >
           {profile.tagline}
         </motion.p>
+        <motion.div
+          className="hero__actions"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        >
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn-outline">
+            Résumé <Arrow className="text-link__arrow" />
+          </a>
+          <Link to="/contact" className="text-link hero__contact-link">
+            Get in touch
+          </Link>
+        </motion.div>
       </motion.section>
 
       <Marquee items={TICKER} />

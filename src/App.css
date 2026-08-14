@@ -257,6 +257,18 @@
   margin: 0;
 }
 
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.hero__contact-link {
+  margin-top: 0;
+}
+
 .about {
   margin-top: 72px;
   max-width: var(--content-max);
