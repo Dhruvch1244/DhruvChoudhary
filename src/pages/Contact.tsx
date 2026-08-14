@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <>
       <PageHeader
-        eyebrow="04 — Contact"
+        eyebrow="05 — Contact"
         title={
           <>
             Let's <span className="gradient-text">talk</span>
@@ -50,6 +50,11 @@ export default function Contact() {
           <li>
             <a href={profile.instagram} target="_blank" rel="noreferrer">
               {profile.instagramHandle} on Instagram
+            </a>
+          </li>
+          <li>
+            <a href={profile.spotify} target="_blank" rel="noreferrer">
+              {profile.spotifyHandle}
             </a>
           </li>
           <li>{profile.location}</li>

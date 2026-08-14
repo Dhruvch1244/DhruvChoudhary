@@ -1,12 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { profile } from '../data/content';
 import ThemeToggle from './ThemeToggle';
+import SpotifyNowPlaying from './SpotifyNowPlaying';
 
 const LINKS = [
   { to: '/', label: 'Index', num: '01' },
   { to: '/projects', label: 'Projects', num: '02' },
   { to: '/experience', label: 'Experience', num: '03' },
-  { to: '/contact', label: 'Contact', num: '04' },
+  { to: '/music', label: 'Music', num: '04' },
+  { to: '/contact', label: 'Contact', num: '05' },
 ];
 
 export default function Nav() {
@@ -51,6 +53,8 @@ export default function Nav() {
         </a>
         <a href={`mailto:${profile.email}`}>Email</a>
       </div>
+
+      <SpotifyNowPlaying />
     </header>
   );
 }

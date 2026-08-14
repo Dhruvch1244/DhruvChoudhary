@@ -12,6 +12,7 @@ import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Kaabo from './pages/Kaabo';
+import Music from './pages/Music';
 import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
 import './App.css';
@@ -83,6 +84,14 @@ export default function App() {
                 element={
                   <PageTransition>
                     <Kaabo />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/music"
+                element={
+                  <PageTransition>
+                    <Music />
                   </PageTransition>
                 }
               />

@@ -13,6 +13,8 @@ export const profile = {
   twitterHandle: '@cdrv546068',
   instagram: 'https://www.instagram.com/dhruv_ch_1',
   instagramHandle: '@dhruv_ch_1',
+  spotify: 'https://open.spotify.com/user/nqx5gu3lxttda59rke7he07nw',
+  spotifyHandle: 'Spotify profile',
   tagline: 'I build resilient backend systems, real-time apps, and the occasional game people actually play.',
   summary:
     'Software Engineer at Fidelity Investments, working on enterprise Java backend services, large-scale file processing pipelines, and financial data applications. Comfortable across Spring Boot, REST APIs, AWS, Oracle, and Angular -- most at home turning a messy operational problem into a resilient, production-ready system. Outside of work: a real-time card game people actually play over a hotspot, and a lyric overlay with more visual engineering in it than the day job strictly requires.',

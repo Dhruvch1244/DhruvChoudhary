@@ -31,8 +31,14 @@ const PAGES = [
     tagline: 'Fidelity Investments, Samsung R&D — enterprise backend, real-time systems.',
   },
   {
+    slug: 'music',
+    eyebrow: '04 — Music',
+    title: 'WHAT I\'M\nLISTENING TO',
+    tagline: 'Now playing, top artists, and playlists -- live from Spotify.',
+  },
+  {
     slug: 'contact',
-    eyebrow: '04 — Contact',
+    eyebrow: '05 — Contact',
     title: "LET'S TALK",
     tagline: 'Backend systems, real-time apps, or anything that needs building properly.',
   },

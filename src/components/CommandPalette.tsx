@@ -12,6 +12,7 @@ const PAGES: Item[] = [
   { label: 'Index', hint: 'Home', to: '/' },
   { label: 'Projects', hint: 'All projects', to: '/projects' },
   { label: 'Experience', hint: 'Work history', to: '/experience' },
+  { label: 'Music', hint: 'What I\'m listening to', to: '/music' },
   { label: 'Contact', hint: 'Get in touch', to: '/contact' },
   { label: 'Kaabo', hint: 'Card game', to: '/kaabo' },
 ];

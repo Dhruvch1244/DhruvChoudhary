@@ -33,6 +33,12 @@ const ROUTES = [
     og: 'experience',
   },
   {
+    path: '/music',
+    title: 'Music — Dhruv Choudhary',
+    description: 'What I\'m listening to right now, top artists, and playlists — live from Spotify.',
+    og: 'music',
+  },
+  {
     path: '/contact',
     title: 'Contact — Dhruv Choudhary',
     description: "Let's talk — backend systems, real-time apps, or anything that needs building properly.",
