@@ -195,6 +195,13 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <Reveal className="guess-cta">
+        <p className="guess-cta__text">Think you know me? Ten quick questions.</p>
+        <Link to="/guess" className="text-link">
+          Guess Dhruv's favorite things <Arrow className="text-link__arrow" />
+        </Link>
+      </Reveal>
     </>
   );
 }

@@ -39,6 +39,12 @@ const ROUTES = [
     og: 'music',
   },
   {
+    path: '/guess',
+    title: 'Guess Dhruv — Dhruv Choudhary',
+    description: 'Ten quick questions -- how well do you actually know Dhruv?',
+    og: 'guess',
+  },
+  {
     path: '/contact',
     title: 'Contact — Dhruv Choudhary',
     description: "Let's talk — backend systems, real-time apps, or anything that needs building properly.",

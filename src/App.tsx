@@ -13,6 +13,7 @@ import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Kaabo from './pages/Kaabo';
 import Music from './pages/Music';
+import Guess from './pages/Guess';
 import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
 import './App.css';
@@ -92,6 +93,14 @@ export default function App() {
                 element={
                   <PageTransition>
                     <Music />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/guess"
+                element={
+                  <PageTransition>
+                    <Guess />
                   </PageTransition>
                 }
               />

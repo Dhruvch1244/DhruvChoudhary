@@ -37,6 +37,12 @@ const PAGES = [
     tagline: 'Now playing, top artists, and playlists -- live from Spotify.',
   },
   {
+    slug: 'guess',
+    eyebrow: 'Just for fun',
+    title: 'GUESS\nDHRUV',
+    tagline: 'Ten quick questions -- how well do you actually know me?',
+  },
+  {
     slug: 'contact',
     eyebrow: '05 — Contact',
     title: "LET'S TALK",
