@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Constellation from './components/Constellation';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Experience from './pages/Experience';
@@ -32,6 +33,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <div className="shell">
         <Constellation />
+        <ScrollToTop />
         <Nav />
         <div className="content">
           <AnimatePresence mode="wait">

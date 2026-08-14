@@ -16,7 +16,7 @@ export default function CaseStudy() {
         ← Back to projects
       </Link>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6 }}>
         <p className="eyebrow">Case study</p>
         <h1 className="page-header__title gradient-text">{study.name}</h1>
         <p className="hero__tagline">{study.tagline}</p>

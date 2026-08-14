@@ -16,8 +16,8 @@ export default function PageHeader({
   return (
     <motion.div
       className="page-header"
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 24, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       {eyebrow && <p className="page-header__eyebrow">{eyebrow}</p>}

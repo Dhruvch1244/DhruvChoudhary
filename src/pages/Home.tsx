@@ -18,10 +18,11 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
 
   return (
     <>
-      <motion.section className="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity }}>
+      <motion.section className="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}>
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 12 }}

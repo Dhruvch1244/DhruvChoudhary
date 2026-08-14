@@ -102,7 +102,7 @@ export const projects: Project[] = [
       'Socket.IO card game. One host runs the server, everyone else joins from a phone browser -- peeks, blind swaps, and slap-the-discard powers, all server-authoritative so no devtools peeking.',
     stack: ['Node.js', 'Express', 'Socket.IO'],
     github: 'https://github.com/Dhruvch1244/kaabo',
-    liveUrl: 'https://kaabo-7izx.onrender.com/',
+    liveUrl: 'https://kaabo.dhruvchoudhary.com/',
   },
   {
     slug: 'lyric-viewer',
@@ -151,7 +151,7 @@ export const kaabo = {
   name: 'Kaabo',
   tagline: 'A real-time multiplayer card game -- Cabo/Kaboo, browser-based, no installs.',
   github: 'https://github.com/Dhruvch1244/kaabo',
-  liveUrl: 'https://kaabo-7izx.onrender.com/',
+  liveUrl: 'https://kaabo.dhruvchoudhary.com/',
   players: '2-8 players',
   howToHost:
     'One device runs the Node.js server -- a laptop, or an Android phone via Termux. Everyone else just opens a browser, on the same network or over the internet once deployed.',
