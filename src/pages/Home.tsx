@@ -9,7 +9,6 @@ import Marquee from '../components/Marquee';
 import GitHubStats from '../components/GitHubStats';
 import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import GitHubActivity from '../components/GitHubActivity';
-import TwitterFeed from '../components/TwitterFeed';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
@@ -179,19 +178,20 @@ export default function Home() {
         <div className="elsewhere__grid">
           <Reveal className="elsewhere__col" delay={0.05}>
             <GitHubActivity />
-            <div className="elsewhere__social">
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="elsewhere__social-link">
-                <span>LinkedIn</span>
-                <span className="elsewhere__social-sub">{profile.linkedinHandle}</span>
-              </a>
-              <a href={profile.instagram} target="_blank" rel="noreferrer" className="elsewhere__social-link">
-                <span>Instagram</span>
-                <span className="elsewhere__social-sub">{profile.instagramHandle}</span>
-              </a>
-            </div>
           </Reveal>
-          <Reveal className="elsewhere__col" delay={0.1}>
-            <TwitterFeed />
+          <Reveal className="elsewhere__col elsewhere__social" delay={0.1}>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="elsewhere__social-link">
+              <span>LinkedIn</span>
+              <span className="elsewhere__social-sub">{profile.linkedinHandle}</span>
+            </a>
+            <a href={profile.twitter} target="_blank" rel="noreferrer" className="elsewhere__social-link">
+              <span>X / Twitter</span>
+              <span className="elsewhere__social-sub">{profile.twitterHandle}</span>
+            </a>
+            <a href={profile.instagram} target="_blank" rel="noreferrer" className="elsewhere__social-link">
+              <span>Instagram</span>
+              <span className="elsewhere__social-sub">{profile.instagramHandle}</span>
+            </a>
           </Reveal>
         </div>
       </section>
