@@ -1831,7 +1831,19 @@ a.now-playing:hover {
     flex-direction: row;
     gap: 14px;
     margin-bottom: 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .nav__links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__link {
+    flex-shrink: 0;
   }
 
   .nav__social {
@@ -1839,7 +1851,7 @@ a.now-playing:hover {
   }
 
   .content {
-    padding: 40px 20px 56px;
+    padding: 48px 20px 56px;
   }
 
   .facts {
