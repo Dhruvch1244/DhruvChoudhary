@@ -38,10 +38,9 @@ app.get('/api/spotify/playlists', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   try {
     const data = await spotify.getPlaylists();
-    if (!data) return res.status(503).json({ error: 'spotify unavailable' });
     res.json(data);
-  } catch {
-    res.status(503).json({ error: 'spotify unavailable' });
+  } catch (err) {
+    res.status(503).json({ error: 'spotify unavailable', detail: err.message });
   }
 });
 

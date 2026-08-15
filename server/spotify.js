@@ -120,13 +120,17 @@ async function getPlaylists() {
   if (cachedValue) return cachedValue;
 
   const userId = process.env.SPOTIFY_USER_ID;
+  if (!userId) throw new Error('missing SPOTIFY_USER_ID');
   const token = await getUserAccessToken();
-  if (!token || !userId) return null;
+  if (!token) throw new Error('could not get user access token (check client id/secret/refresh token)');
 
   const res = await fetch(`https://api.spotify.com/v1/users/${encodeURIComponent(userId)}/playlists?limit=20`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  if (!res.ok) return null;
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`spotify playlists request failed: ${res.status} ${body}`);
+  }
   const data = await res.json();
   const result = (data.items ?? [])
     .filter((p) => p.public)
