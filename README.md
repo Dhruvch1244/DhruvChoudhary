@@ -95,6 +95,11 @@ never pasted into a chat with anyone, including an AI assistant):
   3. Open the printed URL, approve, and the refresh token prints to your
      terminal — paste it into Render as `SPOTIFY_REFRESH_TOKEN`.
 
+  If the playlists endpoint ever 403s with "Insufficient client scope,"
+  the refresh token was minted before `playlist-read-private` was added to
+  the script's scope list -- just re-run step 2/3 to mint a fresh one and
+  replace `SPOTIFY_REFRESH_TOKEN` in Render.
+
 If the Render service's URL differs from `dhruvchoudhary-spotify.onrender.com`,
 update the `API` constant in `src/lib/spotify.ts` to match. Until the env
 vars are set, every widget just hides itself or falls back to a "follow me

@@ -19,7 +19,7 @@ import http from 'node:http';
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = 'http://127.0.0.1:8888/callback';
-const SCOPES = ['user-read-currently-playing', 'user-top-read'].join(' ');
+const SCOPES = ['user-read-currently-playing', 'user-top-read', 'playlist-read-private'].join(' ');
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.error('Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in your shell first.');

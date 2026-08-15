@@ -12,8 +12,12 @@
 // playlists) rather than GET /v1/users/{id}/playlists -- Spotify returns a
 // flat 403 on the latter in practice, even for public playlists and even
 // with a valid user token. /me/playlists is the standard, reliably-
-// supported way to list your own playlists, and this reuses the same
-// refresh-token-derived user access token as the other two endpoints.
+// supported way to list your own playlists, but it requires the
+// `playlist-read-private` scope on the refresh token even just to see
+// public playlists -- without it Spotify returns 403 "Insufficient client
+// scope". This reuses the same refresh-token-derived user access token as
+// the other two endpoints, just with that extra scope included when it
+// was minted (see scripts/get-spotify-refresh-token.mjs).
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
