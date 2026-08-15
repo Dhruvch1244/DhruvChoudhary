@@ -8,13 +8,14 @@
 // (SPOTIFY_REFRESH_TOKEN) -- never in the repo. That refresh token is
 // exchanged here for short-lived access tokens on demand.
 //
-// Playlists are public, so they use the simpler client-credentials
-// (app-only) flow -- no user authorization needed for those.
+// Playlists are public, but Spotify's `/v1/users/{id}/playlists` endpoint
+// rejects app-only client-credentials tokens in practice (despite docs
+// suggesting no scope is required) -- so this reuses the same
+// refresh-token-derived user access token as the other two endpoints.
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
 let userToken = null; // { accessToken, expiresAt }
-let appToken = null; // { accessToken, expiresAt }
 
 function basicAuthHeader() {
   const id = process.env.SPOTIFY_CLIENT_ID;
@@ -39,23 +40,6 @@ async function getUserAccessToken() {
   const data = await res.json();
   userToken = { accessToken: data.access_token, expiresAt: Date.now() + (data.expires_in - 60) * 1000 };
   return userToken.accessToken;
-}
-
-async function getAppAccessToken() {
-  if (appToken && appToken.expiresAt > Date.now()) return appToken.accessToken;
-
-  const auth = basicAuthHeader();
-  if (!auth) return null;
-
-  const res = await fetch(TOKEN_URL, {
-    method: 'POST',
-    headers: { Authorization: auth, 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ grant_type: 'client_credentials' }),
-  });
-  if (!res.ok) return null;
-  const data = await res.json();
-  appToken = { accessToken: data.access_token, expiresAt: Date.now() + (data.expires_in - 60) * 1000 };
-  return appToken.accessToken;
 }
 
 function cached(ttlMs) {
@@ -136,7 +120,7 @@ async function getPlaylists() {
   if (cachedValue) return cachedValue;
 
   const userId = process.env.SPOTIFY_USER_ID;
-  const token = await getAppAccessToken();
+  const token = await getUserAccessToken();
   if (!token || !userId) return null;
 
   const res = await fetch(`https://api.spotify.com/v1/users/${encodeURIComponent(userId)}/playlists?limit=20`, {
