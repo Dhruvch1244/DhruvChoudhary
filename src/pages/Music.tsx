@@ -66,7 +66,7 @@ export default function Music() {
                 <a href={playlist.url ?? undefined} target="_blank" rel="noreferrer">
                   {playlist.image && <img src={playlist.image} alt="" className="playlist-card__img" />}
                   <span className="playlist-card__name">{playlist.name}</span>
-                  <span className="playlist-card__count">{playlist.trackCount} tracks</span>
+                  {playlist.trackCount > 0 && <span className="playlist-card__count">{playlist.trackCount} tracks</span>}
                 </a>
               </Reveal>
             ))}
