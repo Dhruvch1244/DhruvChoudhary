@@ -16,5 +16,3 @@ services:
         sync: false
       - key: SPOTIFY_REFRESH_TOKEN
         sync: false
-      - key: SPOTIFY_USER_ID
-        sync: false

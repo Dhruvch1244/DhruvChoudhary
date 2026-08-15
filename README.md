@@ -86,10 +86,8 @@ never pasted into a chat with anyone, including an AI assistant):
 
 - `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` — from a
   [Spotify developer app](https://developer.spotify.com/dashboard).
-- `SPOTIFY_USER_ID` — the id in your profile URL
-  (`open.spotify.com/user/<this part>`); used for the public playlists list.
 - `SPOTIFY_REFRESH_TOKEN` — a long-lived token that authorizes reading your
-  currently-playing track and top artists. Mint it once, locally:
+  currently-playing track, top artists, and playlists. Mint it once, locally:
   1. In the Spotify app's dashboard settings, add redirect URI
      `http://127.0.0.1:8888/callback`.
   2. From `server/`: `export SPOTIFY_CLIENT_ID=... SPOTIFY_CLIENT_SECRET=...`

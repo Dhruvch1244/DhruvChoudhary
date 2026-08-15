@@ -8,9 +8,11 @@
 // (SPOTIFY_REFRESH_TOKEN) -- never in the repo. That refresh token is
 // exchanged here for short-lived access tokens on demand.
 //
-// Playlists are public, but Spotify's `/v1/users/{id}/playlists` endpoint
-// rejects app-only client-credentials tokens in practice (despite docs
-// suggesting no scope is required) -- so this reuses the same
+// Playlists use GET /v1/me/playlists (the authenticated user's own
+// playlists) rather than GET /v1/users/{id}/playlists -- Spotify returns a
+// flat 403 on the latter in practice, even for public playlists and even
+// with a valid user token. /me/playlists is the standard, reliably-
+// supported way to list your own playlists, and this reuses the same
 // refresh-token-derived user access token as the other two endpoints.
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
@@ -119,12 +121,10 @@ async function getPlaylists() {
   const cachedValue = playlistsCache.get();
   if (cachedValue) return cachedValue;
 
-  const userId = process.env.SPOTIFY_USER_ID;
-  if (!userId) throw new Error('missing SPOTIFY_USER_ID');
   const token = await getUserAccessToken();
   if (!token) throw new Error('could not get user access token (check client id/secret/refresh token)');
 
-  const res = await fetch(`https://api.spotify.com/v1/users/${encodeURIComponent(userId)}/playlists?limit=20`, {
+  const res = await fetch('https://api.spotify.com/v1/me/playlists?limit=20', {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (!res.ok) {
