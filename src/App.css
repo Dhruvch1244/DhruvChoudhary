@@ -1621,6 +1621,45 @@ a.now-playing:hover {
   flex-shrink: 0;
 }
 
+/* ---------- Ambient equalizer (persistent, decorative) ---------- */
+.ambient-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 13px;
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.ambient-eq span {
+  width: 2.5px;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 1px;
+  transform-origin: bottom;
+  animation-name: ambientEqPulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ambientEqPulse {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-eq span {
+    animation: none;
+    transform: scaleY(0.55);
+  }
+}
+
 /* ---------- Guess Dhruv CTA (Home) ---------- */
 .guess-cta {
   margin-top: 64px;
