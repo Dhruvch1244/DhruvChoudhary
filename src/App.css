@@ -2112,6 +2112,17 @@ a.now-playing:hover {
   }
 }
 
+.easter-egg__piece--glyph {
+  width: auto;
+  height: auto;
+  background: none !important;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .easter-egg__toast {
   position: fixed;
   left: 50%;
@@ -2126,4 +2137,50 @@ a.now-playing:hover {
   padding: 14px 22px;
   border-radius: 999px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Secret /matrix page ---------- */
+.matrix-page {
+  position: fixed;
+  inset: 0;
+  background: #05060a;
+  overflow: hidden;
+}
+
+.matrix-page__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.matrix-page__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+  font-family: var(--font-mono);
+  color: #3ecf8e;
+  text-shadow: 0 0 8px rgba(62, 207, 142, 0.6);
+}
+
+.matrix-page__content p {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  max-width: 480px;
+}
+
+.matrix-page__link {
+  margin-top: 12px;
+  color: #3ecf8e;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.matrix-page__link:hover {
+  color: #fff;
 }

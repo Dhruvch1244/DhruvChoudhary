@@ -16,6 +16,7 @@ import Music from './pages/Music';
 import Guess from './pages/Guess';
 import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
+import Matrix from './pages/Matrix';
 import './App.css';
 
 function PageTransition({ children }: { children: ReactNode }) {
@@ -33,6 +34,10 @@ function PageTransition({ children }: { children: ReactNode }) {
 
 export default function App() {
   const location = useLocation();
+
+  if (location.pathname === '/matrix') {
+    return <Matrix />;
+  }
 
   return (
     <MotionConfig reducedMotion="user">
