@@ -9,6 +9,7 @@ import Marquee from '../components/Marquee';
 import GitHubStats from '../components/GitHubStats';
 import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import GitHubActivity from '../components/GitHubActivity';
+import RoastMe from '../components/RoastMe';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
@@ -94,6 +95,7 @@ export default function Home() {
         </dl>
 
         <GitHubStats />
+        <RoastMe />
       </Reveal>
 
       <section className="products">

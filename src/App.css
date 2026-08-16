@@ -566,6 +566,23 @@ a.now-playing:hover {
   }
 }
 
+/* ---------- Roast me ---------- */
+.roast-me {
+  margin-top: 24px;
+}
+
+.roast-me__line {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.55;
+  max-width: 520px;
+}
+
 /* ---------- GitHub activity ---------- */
 .gh-activity__list {
   display: flex;
