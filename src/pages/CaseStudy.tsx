@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import SpotifyPlaylistWidget from '../components/SpotifyPlaylistWidget';
+import VinylDemo from '../components/VinylDemo';
 import { caseStudies, getCaseStudy } from '../data/caseStudies';
 
 function readingTime(study: NonNullable<ReturnType<typeof getCaseStudy>>) {
@@ -60,6 +61,13 @@ export default function CaseStudy() {
           )}
         </div>
       </motion.div>
+
+      {study.vinylDemo && (
+        <Reveal className="case-study__section">
+          <p className="eyebrow">One preset, live</p>
+          <VinylDemo />
+        </Reveal>
+      )}
 
       <Reveal className="case-study__section">
         <h3 className="section-title">Summary</h3>
