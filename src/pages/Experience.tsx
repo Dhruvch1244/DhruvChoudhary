@@ -1,5 +1,6 @@
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
+import FlipCard from '../components/FlipCard';
 import { experience, education, publication, skillGroups, leadership } from '../data/content';
 
 export default function Experience() {
@@ -21,16 +22,33 @@ export default function Experience() {
             <Reveal delay={Math.min(i * 0.06, 0.24)} y={20} className="timeline__reveal">
               <div className="timeline__period">{job.period}</div>
               <div className="timeline__main">
-                <h3 className="timeline__role">{job.role}</h3>
-                <p className="timeline__org">{job.org}</p>
-                {job.bullets.length > 0 && (
-                  <ul className="timeline__bullets">
-                    {job.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
+                {job.bullets.length > 0 ? (
+                  <FlipCard
+                    front={
+                      <>
+                        <h3 className="timeline__role">{job.role}</h3>
+                        <p className="timeline__org">{job.org}</p>
+                      </>
+                    }
+                    back={
+                      <>
+                        <h3 className="timeline__role">{job.role}</h3>
+                        <ul className="timeline__bullets">
+                          {job.bullets.map((b) => (
+                            <li key={b}>{b}</li>
+                          ))}
+                        </ul>
+                        <p className="timeline__stack">{job.stack.join(' · ')}</p>
+                      </>
+                    }
+                  />
+                ) : (
+                  <>
+                    <h3 className="timeline__role">{job.role}</h3>
+                    <p className="timeline__org">{job.org}</p>
+                    <p className="timeline__stack">{job.stack.join(' · ')}</p>
+                  </>
                 )}
-                <p className="timeline__stack">{job.stack.join(' · ')}</p>
               </div>
             </Reveal>
           </li>

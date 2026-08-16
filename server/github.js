@@ -45,6 +45,11 @@ async function getContributions() {
 
   if (days.length === 0) return null;
 
+  // GitHub's table is column-major (7 weekday rows x ~52 week columns), so
+  // DOM order gives all Sundays first, then all Mondays, etc. -- sort into
+  // plain chronological order so consumers don't have to know that.
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
   contributionsCache.set(days);
   return days;
 }

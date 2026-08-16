@@ -1050,6 +1050,31 @@ a.now-playing:hover {
   margin: 0;
 }
 
+/* ---------- Flip card (Experience timeline) ---------- */
+.flip-card {
+  perspective: 1200px;
+}
+
+.flip-card__face {
+  transform-style: preserve-3d;
+}
+
+.flip-card__toggle {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.flip-card__toggle:hover {
+  color: var(--magenta);
+}
+
 /* ---------- Skills ---------- */
 .skills {
   margin-top: 64px;
