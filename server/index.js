@@ -1,5 +1,6 @@
 const express = require('express');
 const spotify = require('./spotify');
+const github = require('./github');
 
 const PORT = process.env.PORT || 3001;
 
@@ -41,6 +42,19 @@ app.get('/api/spotify/playlists', async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(503).json({ error: 'spotify unavailable', detail: err.message });
+  }
+});
+
+// Public, cross-origin: GitHub contribution calendar for the Home page
+// heatmap. See github.js for why this needs a server-side proxy.
+app.get('/api/github/contributions', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  try {
+    const data = await github.getContributions();
+    if (!data) return res.status(503).json({ error: 'github unavailable' });
+    res.json(data);
+  } catch {
+    res.status(503).json({ error: 'github unavailable' });
   }
 });
 
