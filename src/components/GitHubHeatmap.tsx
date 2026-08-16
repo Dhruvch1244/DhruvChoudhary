@@ -18,7 +18,7 @@ function groupIntoWeeks(days: Day[]): Day[][] {
 
   // Pad the first week so columns line up on real weekdays (Sun-Sat).
   const firstDow = new Date(days[0].date + 'T00:00:00Z').getUTCDay();
-  for (let i = 0; i < firstDow; i++) current.push({ date: `pad-${i}`, level: -1 });
+  for (let i = 0; i < firstDow; i++) current.push({ date: `pad-start-${i}`, level: -1 });
 
   for (const day of days) {
     current.push(day);
@@ -27,7 +27,12 @@ function groupIntoWeeks(days: Day[]): Day[][] {
       current = [];
     }
   }
-  if (current.length > 0) weeks.push(current);
+  // Pad the trailing partial week too, so every column is a uniform 7 rows
+  // tall instead of the last one trailing off short.
+  if (current.length > 0) {
+    while (current.length < 7) current.push({ date: `pad-end-${current.length}`, level: -1 });
+    weeks.push(current);
+  }
   return weeks;
 }
 
