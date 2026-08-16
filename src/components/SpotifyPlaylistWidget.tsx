@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { profile } from '../data/content';
 import { getPlaylists, type Playlist } from '../lib/spotify';
-import { useSpotifyCache } from '../lib/useSpotifyCache';
+import { useCachedFetch } from '../lib/useCachedFetch';
 
 function playlistId(url: string | null) {
   if (!url) return null;
@@ -10,7 +10,7 @@ function playlistId(url: string | null) {
 }
 
 export default function SpotifyPlaylistWidget() {
-  const { data: playlists, failed } = useSpotifyCache<Playlist[]>('spotify-playlist-widget-v1', getPlaylists);
+  const { data: playlists, failed } = useCachedFetch<Playlist[]>('spotify-playlist-widget-v1', getPlaylists);
   const [pick, setPick] = useState(0);
 
   const usable = useMemo(() => (playlists ?? []).filter((p) => playlistId(p.url)), [playlists]);

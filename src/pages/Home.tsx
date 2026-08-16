@@ -9,6 +9,7 @@ import Marquee from '../components/Marquee';
 import GitHubStats from '../components/GitHubStats';
 import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import GitHubActivity from '../components/GitHubActivity';
+import GitHubHeatmap from '../components/GitHubHeatmap';
 import RoastMe from '../components/RoastMe';
 
 const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
@@ -179,6 +180,7 @@ export default function Home() {
         </Reveal>
         <div className="elsewhere__grid">
           <Reveal className="elsewhere__col" delay={0.05}>
+            <GitHubHeatmap />
             <GitHubActivity />
           </Reveal>
           <Reveal className="elsewhere__col elsewhere__social" delay={0.1}>

@@ -4,13 +4,13 @@ import Reveal from '../components/Reveal';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying';
 import { profile } from '../data/content';
 import { getTopArtists, getPlaylists, type Artist, type Playlist } from '../lib/spotify';
-import { useSpotifyCache } from '../lib/useSpotifyCache';
+import { useCachedFetch } from '../lib/useCachedFetch';
 
 const CACHE_KEY = 'spotify-music-cache-v1';
 
 export default function Music() {
-  const artists = useSpotifyCache<Artist[]>(`${CACHE_KEY}-artists`, getTopArtists);
-  const playlists = useSpotifyCache<Playlist[]>(`${CACHE_KEY}-playlists`, getPlaylists);
+  const artists = useCachedFetch<Artist[]>(`${CACHE_KEY}-artists`, getTopArtists);
+  const playlists = useCachedFetch<Playlist[]>(`${CACHE_KEY}-playlists`, getPlaylists);
 
   const showArtists = !artists.failed && artists.data && artists.data.length > 0;
   const showPlaylists = !playlists.failed && playlists.data && playlists.data.length > 0;

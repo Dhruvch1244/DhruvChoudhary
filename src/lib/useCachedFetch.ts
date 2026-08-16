@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const CACHE_TTL = 1000 * 60 * 30; // 30 min
 
-export function useSpotifyCache<T>(key: string, fetcher: () => Promise<T>) {
+export function useCachedFetch<T>(key: string, fetcher: () => Promise<T>) {
   const [data, setData] = useState<T | null>(null);
   const [failed, setFailed] = useState(false);
 

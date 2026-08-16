@@ -619,6 +619,52 @@ a.now-playing:hover {
   opacity: 0.3;
 }
 
+/* ---------- GitHub heatmap (generative art) ---------- */
+.gh-heatmap {
+  display: flex;
+  gap: 3px;
+  margin: 20px 0 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.gh-heatmap__col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gh-heatmap__cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: calc(0.12 + var(--level, 0) * 0.22);
+  flex-shrink: 0;
+}
+
+.gh-heatmap__cell--hot {
+  animation: ghHeatmapPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ghHeatmapPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(94, 200, 242, 0);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(94, 200, 242, 0.9);
+    transform: scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-heatmap__cell--hot {
+    animation: none;
+  }
+}
+
 /* ---------- Elsewhere (Home) ---------- */
 .elsewhere {
   margin-top: 88px;
