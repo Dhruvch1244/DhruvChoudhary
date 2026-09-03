@@ -28,7 +28,7 @@ const ROUTES = [
   {
     path: '/projects',
     title: 'Projects — Dhruv Choudhary',
-    description: "Things I've built: Kaabo, Lyric Overlay, Investlytic, SPARK, and more.",
+    description: "Things I've built: dsgn, Kaabo, Lyric Overlay, Investlytic, SPARK, and more.",
     og: 'projects',
   },
   {
@@ -60,6 +60,12 @@ const ROUTES = [
     title: 'Kaabo — Dhruv Choudhary',
     description: 'A real-time multiplayer card game — Cabo/Kaboo, browser-based, no installs.',
     og: 'kaabo',
+  },
+  {
+    path: '/projects/dsgn',
+    title: 'dsgn — Case Study',
+    description: 'A cross-AI design philosophy, made usable — and copy-owned, not installed.',
+    og: 'dsgn',
   },
   {
     path: '/projects/lyric-viewer',
