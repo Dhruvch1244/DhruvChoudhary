@@ -12,7 +12,7 @@ import GitHubActivity from '../components/GitHubActivity';
 import GitHubHeatmap from '../components/GitHubHeatmap';
 import RoastMe from '../components/RoastMe';
 
-const FEATURED = ['kaabo', 'lyric-viewer', 'investlytic'];
+const FEATURED = ['dsgn', 'kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 const lyricOverlay = getCaseStudy('lyric-viewer')!;
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);

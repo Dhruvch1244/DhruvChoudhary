@@ -49,6 +49,12 @@ const PAGES = [
     tagline: 'Backend systems, real-time apps, or anything that needs building properly.',
   },
   {
+    slug: 'dsgn',
+    eyebrow: 'Case Study',
+    title: 'DSGN',
+    tagline: 'A cross-AI design philosophy, made usable — and copy-owned, not installed.',
+  },
+  {
     slug: 'kaabo',
     eyebrow: 'Project',
     title: 'KAABO',

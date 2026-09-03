@@ -25,6 +25,33 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'dsgn',
+    name: 'dsgn',
+    tagline: 'A cross-AI design philosophy, made usable -- and copy-owned, not installed.',
+    role: 'Solo creator -- philosophy, component registry, CLI, and site',
+    summary:
+      'A design philosophy any AI coding tool can read (Claude, GPT, Gemini, Copilot, Cursor), paired with a real Radix/Tailwind/CVA component registry and a CLI that copies component source straight into your project -- you own the file the moment it lands, same instinct as shadcn/ui. Published to npm as @dhruvchoudhary/dsgn.',
+    problem:
+      "AI coding assistants generate UI fast, but with no grounded design philosophy to draw from it tends toward the same generic look -- and every tool has its own incompatible rules format, so a philosophy written for one doesn't transfer to another. Component libraries have the opposite problem: they either lock a project into a runtime dependency, or don't survive being copy-pasted out of context.",
+    approach: [
+      "philosophy/ -- a portable design-philosophy document (AGENTS.md) any AI tool can read. Every rule was extracted from a decision that actually shipped in one of three real apps, cited by name, so the philosophy stays falsifiable instead of aspirational.",
+      "packages/registry -- 36 components plus 8 composed recipes, built on Radix UI primitives, Tailwind, and CVA. Copy-don't-depend by design: nothing in a consuming project imports from this package at runtime.",
+      "packages/cli (@dhruvchoudhary/dsgn on npm) -- `dsgn add button card` copies real component source into the caller's own tree and installs its npm deps. Never overwrites an existing file unless `--overwrite` is passed; ships diff/update for tracking upstream changes, a `doctor` health-check, and VS Code snippets.",
+      "dsgn skill -- installs the philosophy + registry as the native rules format for six different tools: Claude Code's multi-file Agent Skill, Cursor's auto-attaching .mdc rules, Windsurf's rules, GitHub Copilot's instructions, Gemini CLI's real @file.md imports, or a plain AGENTS.md. Built as each format's real multi-file structure, not one file flattened everywhere.",
+      "dsgn-adopt -- the reverse skill: extracts an existing codebase's own real UI conventions (actual component variant names, the actual primitive library, actual design tokens) into a portable skill file, so new AI-generated work matches what's already shipped instead of quietly introducing a competing convention. Every claim it makes cites the file it came from.",
+      "apps/site (design.dhruvchoudhary.com) -- a Next.js site that renders the philosophy and doubles as the live component showcase, built using its own `dsgn add` output rather than a separate hand-maintained demo, and serves the registry itself as static JSON at /r/*.json.",
+    ],
+    stack: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Radix UI', 'CVA', 'Node.js', 'npm workspaces'],
+    outcomes: [
+      'Published and maintained on npm as @dhruvchoudhary/dsgn -- 36 components and 8 recipes in the registry, versioned with a real changelog.',
+      'Cross-tool skill installer covering six AI coding tools\' native rule formats from one source of truth, instead of a philosophy that only works in one editor.',
+      'Non-destructive by default end to end: the CLI itself follows the philosophy\'s own copy-don\'t-depend, never-clobber-a-file rule, not just the components it installs.',
+      'Live, self-hosting showcase at design.dhruvchoudhary.com -- the site proves the registry by using it, not by describing it.',
+    ],
+    github: 'https://github.com/dhruvch1244/design',
+    liveUrl: 'https://design.dhruvchoudhary.com',
+  },
+  {
     slug: 'lyric-viewer',
     name: 'Lyric Overlay',
     tagline: 'A fullscreen, beat-aware synced lyric overlay for Windows.',

@@ -108,6 +108,16 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'dsgn',
+    name: 'dsgn',
+    tagline: 'cross-AI design philosophy + component registry + CLI, published on npm',
+    description:
+      'A portable design philosophy any AI coding tool can read, backed by a real Radix/Tailwind/CVA component registry. `npx @dhruvchoudhary/dsgn add button` copies component source straight into your project -- no runtime dependency, same instinct as shadcn/ui -- and `dsgn skill` installs the philosophy natively for Claude Code, Cursor, Windsurf, Copilot, or Gemini.',
+    stack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Radix UI', 'Node.js CLI'],
+    github: 'https://github.com/dhruvch1244/design',
+    liveUrl: 'https://design.dhruvchoudhary.com',
+  },
+  {
     slug: 'kaabo',
     name: 'Kaabo',
     tagline: 'real-time multiplayer card game (Cabo/Kaboo), 2-8 players, browser-based',

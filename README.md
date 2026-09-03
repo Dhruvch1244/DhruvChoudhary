@@ -7,10 +7,11 @@ TypeScript + Framer Motion. Live at `dhruvchoudhary.com` on GitHub Pages.
 
 ## Pages
 
-- **`/` Index** — parallax hero (fades/lifts on scroll), quick facts, three
+- **`/` Index** — parallax hero (fades/lifts on scroll), quick facts, four
   featured projects
-- **`/projects`** — numbered index of every project, external links to
-  source (Kaabo links to its own page instead)
+- **`/projects`** — numbered index of every project (dsgn, Kaabo, Lyric
+  Overlay, Investlytic, SPARK), external links to source (Kaabo links to its
+  own page instead)
 - **`/experience`** — work history timeline, toolbox, Leadership &
   Community, published research
 - **`/contact`** — email / GitHub / LinkedIn
