@@ -56,13 +56,28 @@ export default function CommandPalette() {
 
   useEffect(() => {
     if (open) {
-      setQuery('');
-      setSelected(0);
-      setTimeout(() => inputRef.current?.focus(), 10);
+      const id = setTimeout(() => inputRef.current?.focus(), 10);
+      return () => clearTimeout(id);
     }
   }, [open]);
 
-  useEffect(() => setSelected(0), [query]);
+  // Reset the query/selection the moment the palette opens, and keep the
+  // selection in range as the query changes — derived during render rather
+  // than via setState-in-effect (React's recommended alternative).
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (prevOpen !== open) {
+    setPrevOpen(open);
+    if (open) {
+      setQuery('');
+      setSelected(0);
+    }
+  }
+
+  const [prevQuery, setPrevQuery] = useState(query);
+  if (prevQuery !== query) {
+    setPrevQuery(query);
+    setSelected(0);
+  }
 
   function go(item: Item) {
     setOpen(false);
