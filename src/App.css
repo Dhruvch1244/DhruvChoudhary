@@ -643,6 +643,17 @@ a.now-playing:hover {
   flex-shrink: 0;
 }
 
+/* This opacity-over-background blend was tuned against the near-black
+   dark surface, where even a dim cell reads clearly. Against the light
+   theme's near-white surface the same low opacities (level 0 lands
+   around rgb(219,232,231) on rgb(247,245,242) -- a ~10-value difference)
+   blend to within a few RGB values of the background and disappear
+   entirely. Raise the floor and re-tune the per-level step so the
+   lowest tier is still a visible, muted square instead of invisible. */
+:root[data-theme='light'] .gh-heatmap__cell {
+  opacity: calc(0.3 + var(--level, 0) * 0.16);
+}
+
 .gh-heatmap__cell--hot {
   animation: ghHeatmapPulse 2.4s ease-in-out infinite;
 }
