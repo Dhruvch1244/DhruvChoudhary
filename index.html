@@ -21,6 +21,26 @@
         var stored = localStorage.getItem('theme');
         var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
         document.documentElement.setAttribute('data-theme', theme);
+
+        // Same for the world (see src/data/worlds.ts): ?world= link > last pick.
+        // Keep this font map in sync with WORLDS[].fonts.
+        var fonts = {
+          terminal: 'family=JetBrains+Mono:wght@400;500;700;800',
+          arcade: 'family=Press+Start+2P&family=VT323',
+          iron: 'family=Archivo+Black&family=Archivo:wght@400;500;600;700',
+          pitlane: 'family=Barlow+Condensed:ital,wght@0,600;1,700;1,800&family=Barlow:wght@400;500;600',
+          nightshift: 'family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700'
+        };
+        var world = new URLSearchParams(location.search).get('world');
+        try { if (!(world in fonts)) world = localStorage.getItem('world'); } catch (e) {}
+        if (world in fonts) {
+          document.documentElement.setAttribute('data-world', world);
+          var link = document.createElement('link');
+          link.id = 'world-fonts-' + world;
+          link.rel = 'stylesheet';
+          link.href = 'https://fonts.googleapis.com/css2?' + fonts[world] + '&display=swap';
+          document.head.appendChild(link);
+        }
       })();
 
       // GitHub Pages SPA routing fallback: restore the real path that 404.html stashed.

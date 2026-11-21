@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projects } from '../data/content';
 import { caseStudies } from '../data/caseStudies';
+import { WORLDS, type WorldId } from '../data/worlds';
+import { useWorld } from '../lib/worldContext';
 
 type Item = { label: string; hint: string; to: string };
 
@@ -26,7 +28,10 @@ const PROJECT_ITEMS: Item[] = projects
     to: CASE_STUDY_SLUGS.has(p.slug) ? `/projects/${p.slug}` : p.github ?? '/projects',
   }));
 
-const ITEMS: Item[] = [...PAGES, ...PROJECT_ITEMS];
+// Worlds ride along as `world:<id>` pseudo-routes, handled in go().
+const WORLD_ITEMS: Item[] = WORLDS.map((w) => ({ label: `World: ${w.name}`, hint: w.motto, to: `world:${w.id}` }));
+
+const ITEMS: Item[] = [...PAGES, ...PROJECT_ITEMS, ...WORLD_ITEMS];
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -34,6 +39,7 @@ export default function CommandPalette() {
   const [selected, setSelected] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { setWorld } = useWorld();
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -81,7 +87,8 @@ export default function CommandPalette() {
 
   function go(item: Item) {
     setOpen(false);
-    if (item.to.startsWith('http')) window.open(item.to, '_blank', 'noreferrer');
+    if (item.to.startsWith('world:')) setWorld(item.to.slice(6) as WorldId);
+    else if (item.to.startsWith('http')) window.open(item.to, '_blank', 'noreferrer');
     else navigate(item.to);
   }
 
@@ -126,7 +133,7 @@ export default function CommandPalette() {
                 ref={inputRef}
                 className="command-palette__input"
                 type="text"
-                placeholder="Jump to a page or project..."
+                placeholder="Jump to a page, project or world..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={onInputKeyDown}

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { profile } from '../data/content';
 import ThemeToggle from './ThemeToggle';
+import WorldSwitcher from './WorldSwitcher';
 import SpotifyNowPlaying from './SpotifyNowPlaying';
 
 const LINKS = [
@@ -19,6 +20,7 @@ export default function Nav() {
         <NavLink to="/" className="nav__brand">
           {profile.name}
         </NavLink>
+        <WorldSwitcher />
         <ThemeToggle />
       </div>
 
