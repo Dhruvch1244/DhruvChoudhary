@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import SpotifyPlaylistWidget from '../components/SpotifyPlaylistWidget';
 import VinylDemo from '../components/VinylDemo';
+import Gallery from '../components/Gallery';
+import ProjectImg from '../components/ProjectImg';
+import { projectImages } from '../data/projectMedia';
 import { caseStudies, getCaseStudy } from '../data/caseStudies';
 
 function readingTime(study: NonNullable<ReturnType<typeof getCaseStudy>>) {
@@ -17,8 +21,13 @@ function readingTime(study: NonNullable<ReturnType<typeof getCaseStudy>>) {
 export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>();
   const study = slug ? getCaseStudy(slug) : undefined;
+  const [allSteps, setAllSteps] = useState(false);
 
   if (!study) return <Navigate to="/projects" replace />;
+
+  const [cover, ...shots] = projectImages(study.slug);
+  const STEPS = 3;
+  const steps = allSteps ? study.approach : study.approach.slice(0, STEPS);
 
   const related = caseStudies.filter((c) => c.slug !== study.slug);
 
@@ -62,6 +71,18 @@ export default function CaseStudy() {
         </div>
       </motion.div>
 
+      {cover && (
+        <motion.figure
+          className="case-study__cover"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <ProjectImg img={cover} eager sizes="(max-width: 860px) 100vw, 960px" />
+          <figcaption className="gallery__caption">{cover.caption}</figcaption>
+        </motion.figure>
+      )}
+
       {study.vinylDemo && (
         <Reveal className="case-study__section">
           <p className="eyebrow">One preset, live</p>
@@ -74,6 +95,15 @@ export default function CaseStudy() {
         <p>{study.summary}</p>
       </Reveal>
 
+      {shots.length > 0 && (
+        <section className="case-study__section case-study__screens">
+          <Reveal>
+            <h3 className="section-title">Screens</h3>
+          </Reveal>
+          <Gallery images={shots} />
+        </section>
+      )}
+
       <Reveal delay={0.05} className="case-study__section">
         <h3 className="section-title">The problem</h3>
         <p>{study.problem}</p>
@@ -82,10 +112,15 @@ export default function CaseStudy() {
       <Reveal delay={0.1} className="case-study__section">
         <h3 className="section-title">Approach</h3>
         <ul className="case-study__list">
-          {study.approach.map((item) => (
+          {steps.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
+        {study.approach.length > STEPS && (
+          <button type="button" className="text-link case-study__more" onClick={() => setAllSteps((v) => !v)} aria-expanded={allSteps}>
+            {allSteps ? 'Show less' : `Show all ${study.approach.length} steps`}
+          </button>
+        )}
       </Reveal>
 
       <Reveal delay={0.15} className="case-study__section">
@@ -122,16 +157,6 @@ export default function CaseStudy() {
         </Reveal>
       )}
 
-      {study.images && study.images.length > 0 && (
-        <div className="case-study__gallery">
-          {study.images.map((img, i) => (
-            <Reveal key={img.src} delay={0.06 * i} className="case-study__figure">
-              <img src={img.src} alt={img.alt} loading="lazy" />
-              <p className="case-study__caption">{img.caption}</p>
-            </Reveal>
-          ))}
-        </div>
-      )}
 
       {related.length > 0 && (
         <Reveal className="case-study__related">

@@ -4,6 +4,11 @@ import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
 import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import { kaabo } from '../data/content';
+import Gallery from '../components/Gallery';
+import ProjectImg from '../components/ProjectImg';
+import { projectImages } from '../data/projectMedia';
+
+const [cover, ...shots] = projectImages('kaabo');
 
 export default function Kaabo() {
   return (
@@ -29,6 +34,27 @@ export default function Kaabo() {
 
         <KaaboLiveBadge />
       </motion.div>
+
+      {cover && (
+        <motion.figure
+          className="case-study__cover"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <ProjectImg img={cover} eager sizes="(max-width: 860px) 100vw, 960px" />
+          <figcaption className="gallery__caption">{cover.caption}</figcaption>
+        </motion.figure>
+      )}
+
+      {shots.length > 0 && (
+        <section className="case-study__section case-study__screens">
+          <Reveal>
+            <h3 className="section-title">Screens</h3>
+          </Reveal>
+          <Gallery images={shots} lead={false} />
+        </section>
+      )}
 
       <div className="kaabo__grid">
         <Reveal>
