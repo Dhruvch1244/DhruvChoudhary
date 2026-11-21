@@ -1,0 +1,14 @@
+// Cloudflare Workers Builds config. The Git integration runs `npm run build`
+// and then `npx wrangler versions upload`; this tells wrangler to upload the
+// static build in ./dist. GitHub Pages (.github/workflows/deploy.yml) is
+// unaffected and still deploys the same dist/ on its own.
+{
+  "name": "dhruvchoudhary",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./dist",
+    // client-side routes (e.g. /projects/foo, unknown paths -> NotFound page)
+    // fall back to index.html, same as the 404.html trick on GitHub Pages
+    "not_found_handling": "single-page-application"
+  }
+}
