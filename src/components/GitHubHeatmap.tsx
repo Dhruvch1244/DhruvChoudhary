@@ -11,6 +11,15 @@ async function getContributions(): Promise<Day[]> {
   return res.json();
 }
 
+/** Keep only the last 3 months, counted back from the newest day in the data. */
+function lastThreeMonths(days: Day[]): Day[] {
+  if (days.length === 0) return days;
+  const cutoff = new Date(days[days.length - 1].date + 'T00:00:00Z');
+  cutoff.setUTCMonth(cutoff.getUTCMonth() - 3);
+  const from = cutoff.toISOString().slice(0, 10);
+  return days.filter((d) => d.date > from);
+}
+
 function groupIntoWeeks(days: Day[]): Day[][] {
   if (days.length === 0) return [];
   const weeks: Day[][] = [];
@@ -42,10 +51,12 @@ export default function GitHubHeatmap() {
   if (failed || (days && days.length === 0)) return null;
   if (!days) return null;
 
-  const weeks = groupIntoWeeks(days);
+  const weeks = groupIntoWeeks(lastThreeMonths(days));
 
   return (
-    <div className="gh-heatmap" aria-hidden="true">
+    <>
+      <p className="gh-heatmap__label">GitHub · last 3 months</p>
+      <div className="gh-heatmap" aria-hidden="true">
       {weeks.map((week, wi) => (
         <div className="gh-heatmap__col" key={wi}>
           {week.map((day, di) => (
@@ -57,6 +68,7 @@ export default function GitHubHeatmap() {
           ))}
         </div>
       ))}
-    </div>
+      </div>
+    </>
   );
 }

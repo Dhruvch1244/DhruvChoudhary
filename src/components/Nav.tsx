@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { profile } from '../data/content';
 import ThemeToggle from './ThemeToggle';
 import WorldSwitcher from './WorldSwitcher';
-import SpotifyNowPlaying from './SpotifyNowPlaying';
 
 const LINKS = [
   { to: '/', label: 'Index', num: '01' },
@@ -56,7 +55,6 @@ export default function Nav() {
         <a href={`mailto:${profile.email}`}>Email</a>
       </div>
 
-      <SpotifyNowPlaying />
     </header>
   );
 }

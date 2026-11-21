@@ -17,8 +17,8 @@ TypeScript + Framer Motion. Live at `dhruvchoudhary.com` on GitHub Pages.
 - **`/contact`** — email / GitHub / LinkedIn
 - **`/kaabo`** — dedicated page for the card game: Play Now (live Render
   deployment), source, rules, how to host
-- **`/music`** — what I'm listening to right now, top artists, playlists —
-  live from Spotify
+- **`/music`** — top artists and playlists, live from Spotify (no
+  live "now playing" -- removed on purpose)
 
 Every section reveals on scroll (`components/Reveal.tsx`, an
 `IntersectionObserver`-backed `whileInView`); route changes cross-fade via
@@ -96,10 +96,10 @@ every push to `main` (or this branch). Already configured and live:
 
 ## Spotify backend (`server/`)
 
-GitHub Pages only serves static files, and Spotify's "now playing" / "top
-artists" endpoints need a client secret + refresh token that can never sit
+GitHub Pages only serves static files, and Spotify's "top artists" /
+"playlists" endpoints need a client secret + refresh token that can never sit
 in frontend JS (anyone could view-source the site and steal them). So the
-Spotify widgets (sidebar now-playing pill, `/music`, the playlist embed on
+Spotify widgets (`/music`, the playlist embed on
 the Lyric Overlay case study) talk to a small standalone Express API in
 `server/` instead — same code, deployed separately from the static site:
 
