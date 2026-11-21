@@ -11,6 +11,7 @@ import KaaboLiveBadge from '../components/KaaboLiveBadge';
 import GitHubActivity from '../components/GitHubActivity';
 import GitHubHeatmap from '../components/GitHubHeatmap';
 import RoastMe from '../components/RoastMe';
+import { useWorld } from '../lib/worldContext';
 
 const FEATURED = ['dsgn', 'kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
@@ -18,6 +19,7 @@ const lyricOverlay = getCaseStudy('lyric-viewer')!;
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
 
 export default function Home() {
+  const { world } = useWorld();
   const featured = FEATURED.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
@@ -29,12 +31,13 @@ export default function Home() {
     <>
       <motion.section className="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}>
         <motion.p
+          key={world.id}
           className="eyebrow"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {profile.role} — Fidelity Investments
+          {world.id === 'constellation' ? `${profile.role} — Fidelity Investments` : world.eyebrow}
         </motion.p>
         <motion.h1
           className="hero__title"
@@ -53,6 +56,25 @@ export default function Home() {
         >
           {profile.tagline}
         </motion.p>
+        <motion.div
+          key={`motto-${world.id}`}
+          className="hero__world"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+        >
+          <p className="hero__motto">{world.motto}</p>
+          <button
+            type="button"
+            className="hero__status"
+            onClick={() => window.dispatchEvent(new Event('open-world-switcher'))}
+            title="Change world"
+          >
+            <span className="hero__status-dot" aria-hidden="true" />
+            {world.status}
+            <span className="hero__status-hint">· switch world</span>
+          </button>
+        </motion.div>
         <motion.div
           className="hero__actions"
           initial={{ opacity: 0, y: 16 }}

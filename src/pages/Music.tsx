@@ -1,7 +1,6 @@
 import PageHeader from '../components/PageHeader';
 import { Arrow } from '../components/Marks';
 import Reveal from '../components/Reveal';
-import SpotifyNowPlaying from '../components/SpotifyNowPlaying';
 import { profile } from '../data/content';
 import { getTopArtists, getPlaylists, type Artist, type Playlist } from '../lib/spotify';
 import { useCachedFetch } from '../lib/useCachedFetch';
@@ -30,11 +29,6 @@ export default function Music() {
           Follow on Spotify <Arrow className="text-link__arrow" />
         </a>
       </PageHeader>
-
-      <Reveal className="music__now">
-        <p className="eyebrow">Right now</p>
-        <SpotifyNowPlaying large />
-      </Reveal>
 
       {showArtists && (
         <section className="music__section">

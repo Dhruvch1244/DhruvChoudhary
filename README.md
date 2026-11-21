@@ -17,13 +17,37 @@ TypeScript + Framer Motion. Live at `dhruvchoudhary.com` on GitHub Pages.
 - **`/contact`** — email / GitHub / LinkedIn
 - **`/kaabo`** — dedicated page for the card game: Play Now (live Render
   deployment), source, rules, how to host
-- **`/music`** — what I'm listening to right now, top artists, playlists —
-  live from Spotify
+- **`/music`** — top artists and playlists, live from Spotify (no
+  live "now playing" -- removed on purpose)
 
 Every section reveals on scroll (`components/Reveal.tsx`, an
 `IntersectionObserver`-backed `whileInView`); route changes cross-fade via
 `AnimatePresence` in `App.tsx`. `MotionConfig reducedMotion="user"` makes all
 of it stand down under the OS-level reduce-motion setting.
+
+## Worlds
+
+The whole site can be re-skinned into one of six **worlds** -- same content,
+different lens. Pick one from the sidebar pill (or the hero status chip),
+hop with **Shift+W**, jump via **⌘K** (`World: …`), or share a link like
+`/?world=arcade`. The choice persists in `localStorage`.
+
+| World | Philosophy | Backdrop |
+|---|---|---|
+| Constellation | Everything is a graph. Find the edges. | the original node network (light/dark toggle lives here) |
+| Terminal | `while (alive) { eat(); code(); lift(); repeat(); }` | phosphor code rain + scanlines |
+| Arcade | Level 404 → 200 OK. One boss fight at a time. | pixel starfield, synth sun, rolling grid floor |
+| Iron | Deadlifts & data structures. | graph paper + spinning O(n) weight plates |
+| Pit Lane | Box, box — shipping to prod. | speed streaks that rush as you scroll, checkered strip |
+| Night Shift | Powered by coffee, cats & clean code. | twinkling sky, moon, shooting stars, a peeking cat |
+
+Every backdrop reacts to scroll speed and the cursor, and each world has its
+own scroll-progress runner. Pieces: `data/worlds.ts` (copy + swatches +
+fonts), `components/WorldProvider.tsx` (state, `?world=`, lazy font load),
+`components/WorldScene.tsx` (canvas scenes), `components/WorldHud.tsx`
+(progress bar, toast, cat), `components/WorldSwitcher.tsx`, and
+`src/worlds.css` (token overrides per `[data-world]`). `index.html` sets
+`data-world` before first paint.
 
 ## Structure
 
@@ -72,10 +96,10 @@ every push to `main` (or this branch). Already configured and live:
 
 ## Spotify backend (`server/`)
 
-GitHub Pages only serves static files, and Spotify's "now playing" / "top
-artists" endpoints need a client secret + refresh token that can never sit
+GitHub Pages only serves static files, and Spotify's "top artists" /
+"playlists" endpoints need a client secret + refresh token that can never sit
 in frontend JS (anyone could view-source the site and steal them). So the
-Spotify widgets (sidebar now-playing pill, `/music`, the playlist embed on
+Spotify widgets (`/music`, the playlist embed on
 the Lyric Overlay case study) talk to a small standalone Express API in
 `server/` instead — same code, deployed separately from the static site:
 

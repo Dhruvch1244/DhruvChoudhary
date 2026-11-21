@@ -1,0 +1,903 @@
+/* ==========================================================================
+   Worlds -- whole-site skins (see src/data/worlds.ts).
+   Each world re-points the palette + type tokens from index.css and adds a
+   few signature touches. Loaded after App.css so `:root[data-world=...]`
+   wins over the light/dark theme tokens (worlds have a fixed palette; the
+   light/dark toggle only applies to the default Constellation world).
+   ========================================================================== */
+
+/* ---------- Shared world chrome ---------- */
+
+.world-toggle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.4s ease;
+}
+
+.world-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(180deg);
+}
+
+.world-toggle svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.world-toggle__label,
+.world-toggle__key {
+  display: none;
+}
+
+/* Desktop sidebar: the toggle becomes a full-width "World: X" pill on its
+   own row under the name, so it's discoverable and never crowds the name. */
+@media (min-width: 861px) {
+  .nav__top {
+    flex-wrap: wrap;
+  }
+
+  .world-toggle {
+    order: 10;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: var(--glass);
+    font-size: 12.5px;
+  }
+
+  .world-toggle:hover {
+    transform: none;
+  }
+
+  .world-toggle:hover svg {
+    transform: rotate(180deg);
+  }
+
+  .world-toggle__label {
+    display: inline;
+    flex: 1;
+    text-align: left;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .world-toggle__label strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .world-toggle__key {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+}
+
+:root[data-world]:not([data-world='constellation']) .theme-toggle {
+  display: none;
+}
+
+.world-scene {
+  transition: opacity 0.4s ease;
+}
+
+/* hero: the world's philosophy + a clickable status pill */
+.hero__world {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: var(--content-max);
+}
+
+.hero__motto {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 7px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--glass);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.hero__status:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: worldPulse 2s ease-in-out infinite;
+}
+
+.hero__status-hint {
+  color: var(--ink-faint);
+}
+
+@keyframes worldPulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* switcher dialog */
+.world-switcher__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  background: rgba(5, 5, 10, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+}
+
+.world-switcher {
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  padding: 24px;
+}
+
+.world-switcher__head {
+  margin-bottom: 18px;
+}
+
+.world-switcher__title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.world-switcher__sub {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+.world-switcher__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .hero__status-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .world-switcher__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.world-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  padding: 10px 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.world-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.world-card--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.world-card__swatch {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.world-card__name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.world-card__motto {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
+
+/* scroll progress with a per-world runner */
+.world-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.world-progress__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.world-progress__runner {
+  position: absolute;
+  top: 1px;
+  transform: translate(-50%, 0);
+}
+
+.world-progress__svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.world-progress__svg--wide {
+  width: 32px;
+  height: 14px;
+}
+
+.world-progress__cursor {
+  display: block;
+  width: 9px;
+  height: 16px;
+  background: var(--accent);
+  animation: worldBlink 1s steps(1) infinite;
+}
+
+@keyframes worldBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* "Entered <world>" toast */
+.world-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 220;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 10px;
+  max-width: calc(100vw - 32px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: var(--glass-strong);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.world-toast__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.world-toast__motto {
+  flex-basis: 100%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* Night Shift's peeking cat */
+.peeking-cat {
+  position: fixed;
+  bottom: -6px;
+  right: 92px;
+  z-index: 30;
+  width: 112px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  animation: catPeek 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.peeking-cat svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.peeking-cat__eyes {
+  transform-origin: 90px 40px;
+  animation: catBlink 5s infinite;
+}
+
+.peeking-cat__bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  color: #2b2350;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@keyframes catPeek {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes catBlink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@media (max-width: 860px) {
+  .peeking-cat {
+    right: 70px;
+    width: 84px;
+  }
+}
+
+/* ==========================================================================
+   TERMINAL -- green phosphor, monospace everything, faint scanlines
+   ========================================================================== */
+:root[data-world='terminal'] {
+  --void: #070b09;
+  --surface: #0c1310;
+  --ink: #d5f7e1;
+  --ink-soft: #94c2a5;
+  --ink-faint: #5d8169;
+  --rule: #183224;
+  --accent: #3ddc84;
+  --accent-soft: #8ef0b6;
+  --accent-warm: #e0b341;
+  --magenta: #e0b341;
+  --violet: #61afef;
+  --cyan: #3ddc84;
+  --glass: rgba(7, 11, 9, 0.72);
+  --glass-strong: rgba(12, 19, 16, 0.92);
+  --font-display: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+
+:root[data-world='terminal'] body {
+  font-size: 15px;
+}
+
+:root[data-world='terminal'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+
+:root[data-world='terminal'] :is(h1, h2, h3) {
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+:root[data-world='terminal'] .hero__title {
+  font-size: clamp(44px, 8.5vw, 112px);
+}
+
+:root[data-world='terminal'] .hero__title::before {
+  content: '❯ ';
+  color: var(--accent);
+}
+
+:root[data-world='terminal'] .gradient-text {
+  background: none;
+  color: var(--accent);
+  filter: none;
+  text-shadow: 0 0 24px rgba(61, 220, 132, 0.45);
+  animation: none;
+}
+
+:root[data-world='terminal'] .hero__name::after {
+  content: '_';
+  animation: worldBlink 1s steps(1) infinite;
+}
+
+:root[data-world='terminal'] .stroke-text {
+  color: var(--ink-faint);
+  -webkit-text-stroke: 0;
+}
+
+:root[data-world='terminal'] .section-title::before {
+  content: '## ';
+  color: var(--accent);
+}
+
+:root[data-world='terminal'] .eyebrow::before {
+  content: '$';
+  color: var(--accent);
+}
+
+:root[data-world='terminal'] .hero__motto::before {
+  content: '// ';
+  color: var(--ink-faint);
+}
+
+:root[data-world='terminal'] .btn-outline {
+  border-radius: 0;
+  background: var(--accent);
+  color: #04110a;
+}
+
+:root[data-world='terminal'] .btn-outline:hover {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(61, 220, 132, 0.45);
+}
+
+:root[data-world='terminal'] .hero__status {
+  border-radius: 4px;
+}
+
+:root[data-world='terminal'] .hero__status::before {
+  content: '❯';
+  color: var(--accent);
+}
+
+:root[data-world='terminal'] .hero__status-dot {
+  display: none;
+}
+
+/* ==========================================================================
+   ARCADE -- synthwave purple, pixel type, chunky offset shadows
+   ========================================================================== */
+:root[data-world='arcade'] {
+  --void: #170a35;
+  --surface: #221050;
+  --ink: #ffffff;
+  --ink-soft: #e3d3ff;
+  --ink-faint: #a891db;
+  --rule: #3d2575;
+  --accent: #ffe14f;
+  --accent-soft: #fff09a;
+  --accent-warm: #ffe14f;
+  --magenta: #ff4fd8;
+  --violet: #7af7ff;
+  --cyan: #7af7ff;
+  --glass: rgba(23, 10, 53, 0.7);
+  --glass-strong: rgba(34, 16, 80, 0.92);
+  --font-display: 'Press Start 2P', ui-monospace, monospace;
+  --font-mono: 'VT323', ui-monospace, monospace;
+  color-scheme: dark;
+}
+
+:root[data-world='arcade'] body {
+  background: linear-gradient(180deg, #120728 0%, #170a35 55%, #2a0c4a 100%) fixed;
+}
+
+:root[data-world='arcade'] :is(h1, h2, h3) {
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+:root[data-world='arcade'] .hero__title {
+  font-size: clamp(30px, 5.6vw, 74px);
+}
+
+:root[data-world='arcade'] .section-title {
+  font-size: 20px;
+}
+
+:root[data-world='arcade'] :is(.eyebrow, .hero__motto, .hero__status) {
+  font-size: 19px;
+  letter-spacing: 0.08em;
+}
+
+:root[data-world='arcade'] .gradient-text {
+  background: none;
+  color: var(--accent);
+  filter: none;
+  text-shadow: 5px 5px 0 var(--magenta);
+  animation: none;
+}
+
+:root[data-world='arcade'] .stroke-text {
+  color: var(--cyan);
+  -webkit-text-stroke: 0;
+}
+
+:root[data-world='arcade'] .eyebrow::before {
+  content: '▶';
+  color: var(--accent);
+  animation: worldBlink 1.1s steps(1) infinite;
+}
+
+:root[data-world='arcade'] .btn-outline {
+  border-radius: 0;
+  background: var(--accent);
+  color: #170a35;
+  box-shadow: 4px 4px 0 var(--magenta);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+:root[data-world='arcade'] .btn-outline:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--magenta);
+}
+
+:root[data-world='arcade'] .btn-outline:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--magenta);
+}
+
+:root[data-world='arcade'] .hero__status {
+  border-radius: 0;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+:root[data-world='arcade'] .hero__status-dot {
+  border-radius: 0;
+}
+
+:root[data-world='arcade'] .world-progress {
+  height: 6px;
+}
+
+:root[data-world='arcade'] .world-progress__fill {
+  background: repeating-linear-gradient(90deg, var(--accent) 0 10px, transparent 10px 12px);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   IRON -- warm paper, heavy grotesk, gym-poster orange
+   ========================================================================== */
+:root[data-world='iron'] {
+  --void: #f6efe3;
+  --surface: #fffaf2;
+  --ink: #2d3142;
+  --ink-soft: #4f5d75;
+  --ink-faint: #7f8596;
+  --rule: #e2d6c2;
+  --accent: #e36d3c;
+  --accent-soft: #c4582b;
+  --accent-warm: #ffd166;
+  --magenta: #ef8354;
+  --violet: #2d3142;
+  --cyan: #e36d3c;
+  --glass: rgba(246, 239, 227, 0.78);
+  --glass-strong: rgba(255, 250, 242, 0.94);
+  --font-display: 'Archivo Black', 'Archivo', Impact, sans-serif;
+  --font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: light;
+}
+
+:root[data-world='iron'] :is(h1, h2, h3) {
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+
+:root[data-world='iron'] .hero__title {
+  font-size: clamp(56px, 11vw, 150px);
+}
+
+:root[data-world='iron'] .gradient-text {
+  background: none;
+  color: var(--accent);
+  filter: none;
+  animation: none;
+}
+
+:root[data-world='iron'] .stroke-text {
+  -webkit-text-stroke: 2.5px var(--ink);
+}
+
+:root[data-world='iron'] .eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+:root[data-world='iron'] .eyebrow::before {
+  content: '●';
+  color: var(--ink);
+}
+
+:root[data-world='iron'] .btn-outline {
+  background: var(--ink);
+  color: #fffaf2;
+  border-radius: 999px;
+}
+
+:root[data-world='iron'] .btn-outline:hover {
+  background: var(--accent);
+  box-shadow: 0 14px 30px -12px rgba(227, 109, 60, 0.7);
+}
+
+:root[data-world='iron'] .hero__motto {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+:root[data-world='iron'] .hero__status-dot {
+  box-shadow: none;
+}
+
+:root[data-world='iron'] ::selection {
+  background: var(--accent-warm);
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   PIT LANE -- asphalt black, italic condensed type, checkered + speed
+   ========================================================================== */
+:root[data-world='pitlane'] {
+  --void: #0f1012;
+  --surface: #17181c;
+  --ink: #ffffff;
+  --ink-soft: #babdc5;
+  --ink-faint: #737781;
+  --rule: #272a31;
+  --accent: #ffd60a;
+  --accent-soft: #ffe566;
+  --accent-warm: #ffd60a;
+  --magenta: #ff2a3c;
+  --violet: #ff2a3c;
+  --cyan: #ffd60a;
+  --glass: rgba(15, 16, 18, 0.74);
+  --glass-strong: rgba(23, 24, 28, 0.94);
+  --font-display: 'Barlow Condensed', 'Bebas Neue', Impact, sans-serif;
+  --font-sans: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: dark;
+}
+
+:root[data-world='pitlane'] :is(h1, h2, h3) {
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+
+:root[data-world='pitlane'] .hero__title {
+  font-size: clamp(64px, 13vw, 176px);
+}
+
+:root[data-world='pitlane'] .gradient-text {
+  background: none;
+  color: var(--magenta);
+  filter: none;
+  animation: none;
+  padding-right: 0.06em;
+}
+
+:root[data-world='pitlane'] .stroke-text {
+  -webkit-text-stroke: 2px var(--ink);
+}
+
+:root[data-world='pitlane'] .eyebrow::before {
+  content: '▰▰';
+  color: var(--magenta);
+  letter-spacing: -0.1em;
+}
+
+:root[data-world='pitlane'] .shell::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 3px;
+  height: 12px;
+  z-index: 50;
+  pointer-events: none;
+  background: repeating-conic-gradient(#ffffff 0 25%, #0f1012 0 50%) 0 0 / 12px 12px;
+  opacity: 0.9;
+}
+
+:root[data-world='pitlane'] .nav {
+  border-right: 2px dashed rgba(255, 214, 10, 0.35);
+  padding-top: 64px;
+}
+
+:root[data-world='pitlane'] .content {
+  padding-top: 92px;
+}
+
+:root[data-world='pitlane'] .btn-outline {
+  border-radius: 2px;
+  background: var(--magenta);
+  color: #fff;
+  transform: skewX(-10deg);
+}
+
+:root[data-world='pitlane'] .btn-outline:hover {
+  transform: skewX(-10deg) translateX(4px);
+  box-shadow: -10px 0 0 -4px var(--accent);
+}
+
+:root[data-world='pitlane'] .hero__status {
+  border-radius: 2px;
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+:root[data-world='pitlane'] .hero__status-dot {
+  background: var(--magenta);
+  box-shadow: 0 0 10px var(--magenta);
+}
+
+:root[data-world='pitlane'] .world-progress__fill {
+  background: linear-gradient(90deg, var(--magenta), var(--accent));
+}
+
+/* ==========================================================================
+   NIGHT SHIFT -- lavender night sky, round friendly type, soft corners
+   ========================================================================== */
+:root[data-world='nightshift'] {
+  --void: #261f4a;
+  --surface: #30285e;
+  --ink: #ffffff;
+  --ink-soft: #e2dafa;
+  --ink-faint: #a59bd0;
+  --rule: #463c80;
+  --accent: #a8f0d1;
+  --accent-soft: #c9f7e4;
+  --accent-warm: #ffd84f;
+  --magenta: #f2a7c3;
+  --violet: #c9b6ff;
+  --cyan: #a8f0d1;
+  --glass: rgba(38, 31, 74, 0.7);
+  --glass-strong: rgba(48, 40, 94, 0.94);
+  --font-display: 'Fredoka', 'Hanken Grotesk', sans-serif;
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: dark;
+}
+
+:root[data-world='nightshift'] body {
+  background: linear-gradient(165deg, #211a42 0%, #3a2f6d 55%, #6a4f8f 100%) fixed;
+}
+
+:root[data-world='nightshift'] :is(h1, h2, h3) {
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+:root[data-world='nightshift'] .hero__title {
+  font-size: clamp(52px, 10vw, 134px);
+}
+
+:root[data-world='nightshift'] .gradient-text {
+  background: linear-gradient(100deg, var(--accent) 0%, var(--violet) 50%, var(--magenta) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 22px rgba(201, 182, 255, 0.35));
+}
+
+:root[data-world='nightshift'] .stroke-text {
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+}
+
+:root[data-world='nightshift'] .eyebrow {
+  color: var(--accent-warm);
+}
+
+:root[data-world='nightshift'] .eyebrow::before {
+  content: '☾';
+  color: var(--accent-warm);
+}
+
+:root[data-world='nightshift'] .btn-outline {
+  border-radius: 999px;
+  background: var(--accent);
+  color: #241d45;
+}
+
+:root[data-world='nightshift'] .btn-outline:hover {
+  box-shadow: 0 14px 30px -10px rgba(168, 240, 209, 0.6);
+}
+
+:root[data-world='nightshift'] .hero__motto {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+:root[data-world='nightshift'] .hero__status-dot {
+  background: var(--accent-warm);
+  box-shadow: 0 0 10px var(--accent-warm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__status-dot,
+  .world-progress__cursor,
+  .peeking-cat,
+  .peeking-cat__eyes {
+    animation: none !important;
+  }
+}

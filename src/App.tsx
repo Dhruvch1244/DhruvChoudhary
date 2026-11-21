@@ -2,6 +2,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import type { ReactNode } from 'react';
 import Constellation from './components/Constellation';
+import WorldScene from './components/WorldScene';
+import WorldHud from './components/WorldHud';
+import { useWorld } from './lib/worldContext';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -18,6 +21,7 @@ import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
 import Matrix from './pages/Matrix';
 import './App.css';
+import './worlds.css';
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
@@ -34,6 +38,7 @@ function PageTransition({ children }: { children: ReactNode }) {
 
 export default function App() {
   const location = useLocation();
+  const { world } = useWorld();
 
   if (location.pathname === '/matrix') {
     return <Matrix />;
@@ -45,7 +50,8 @@ export default function App() {
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
-        <Constellation />
+        {world.id === 'constellation' ? <Constellation /> : <WorldScene world={world.id} />}
+        <WorldHud />
         <ScrollToTop />
         <EasterEgg />
         <CommandPalette />

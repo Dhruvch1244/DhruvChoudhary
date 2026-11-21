@@ -19,11 +19,6 @@ const ROUTES = [
     title: 'Dhruv Choudhary — Software Engineer',
     description: 'Dhruv Choudhary — Software Engineer building enterprise backend systems, real-time apps, and ML-driven platforms.',
     og: 'default',
-    // "Song of the visit" -- bakes in whatever's actually playing on
-    // Spotify at share-time (server/og.js), falling back to the static
-    // default image below when nothing is. Only the homepage gets this;
-    // every other route keeps its own static per-page image.
-    ogImageOverride: 'https://dhruvchoudhary-spotify.onrender.com/og/live.png',
   },
   {
     path: '/projects',

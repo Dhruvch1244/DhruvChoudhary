@@ -60,44 +60,8 @@ function cached(ttlMs) {
   };
 }
 
-const nowPlayingCache = cached(10_000);
 const topArtistsCache = cached(60 * 60_000);
 const playlistsCache = cached(60 * 60_000);
-
-async function getNowPlaying() {
-  const cachedValue = nowPlayingCache.get();
-  if (cachedValue) return cachedValue;
-
-  const token = await getUserAccessToken();
-  if (!token) return null;
-
-  const res = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  let result;
-  if (res.status === 204 || !res.ok) {
-    result = { isPlaying: false };
-  } else {
-    const data = await res.json();
-    if (!data.item) {
-      result = { isPlaying: false };
-    } else {
-      result = {
-        isPlaying: Boolean(data.is_playing),
-        track: data.item.name,
-        artist: data.item.artists.map((a) => a.name).join(', '),
-        album: data.item.album?.name ?? '',
-        albumArt: data.item.album?.images?.[0]?.url ?? null,
-        url: data.item.external_urls?.spotify ?? null,
-        progressMs: data.progress_ms ?? 0,
-        durationMs: data.item.duration_ms ?? 0,
-      };
-    }
-  }
-  nowPlayingCache.set(result);
-  return result;
-}
 
 async function getTopArtists() {
   const cachedValue = topArtistsCache.get();
@@ -149,4 +113,4 @@ async function getPlaylists() {
   return result;
 }
 
-module.exports = { getNowPlaying, getTopArtists, getPlaylists };
+module.exports = { getTopArtists, getPlaylists };
