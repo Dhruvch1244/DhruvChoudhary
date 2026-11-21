@@ -1550,27 +1550,6 @@
   }
 }
 
-.case-study__gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 56px;
-}
-
-.case-study__figure img {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-  border: 1px solid var(--rule);
-}
-
-.case-study__caption {
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--ink-faint);
-  line-height: 1.5;
-}
-
 .case-study__related {
   margin-top: 72px;
   padding-top: 32px;

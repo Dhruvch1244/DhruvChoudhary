@@ -20,7 +20,6 @@ export type CaseStudy = {
     note: string;
     href?: string;
   };
-  images?: { src: string; alt: string; caption: string }[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -80,11 +79,6 @@ export const caseStudies: CaseStudy[] = [
     demoUrl: 'https://lyricoverlay.dhruvchoudhary.com/demo.html',
     spotifyPlaylist: true,
     vinylDemo: true,
-    images: [
-      { src: '/case-studies/lyric-viewer/vinyl.jpg', alt: 'Vinyl preset', caption: 'Vinyl -- cover art as a record on a deck, turning one revolution every four beats once tempo locks.' },
-      { src: '/case-studies/lyric-viewer/wormhole.jpg', alt: 'Wormhole preset', caption: 'Wormhole -- a tunnel that constricts and winds up in the seconds before a drop it already knows is coming.' },
-      { src: '/case-studies/lyric-viewer/heatmap.jpg', alt: 'Heatmap preset', caption: "Heatmap -- the song's shape learned by listening once, remembered on every replay." },
-    ],
   },
   {
     slug: 'investlytic',

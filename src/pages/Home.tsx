@@ -12,6 +12,8 @@ import GitHubActivity from '../components/GitHubActivity';
 import GitHubHeatmap from '../components/GitHubHeatmap';
 import RoastMe from '../components/RoastMe';
 import { useWorld } from '../lib/worldContext';
+import ProjectImg from '../components/ProjectImg';
+import { projectCover } from '../data/projectMedia';
 
 const FEATURED = ['dsgn', 'kaabo', 'lyric-viewer', 'investlytic'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
@@ -165,8 +167,14 @@ export default function Home() {
             const isKaabo = p.slug === 'kaabo';
             const isCaseStudy = CASE_STUDY_SLUGS.has(p.slug);
             const internalTo = isKaabo ? '/kaabo' : isCaseStudy ? `/projects/${p.slug}` : null;
+            const cover = projectCover(p.slug);
             const content = (
               <>
+                {cover && (
+                  <span className="work-list__thumb">
+                    <ProjectImg img={cover} sizes="160px" />
+                  </span>
+                )}
                 <span className="work-list__num">0{i + 1}</span>
                 <span className="work-list__name">{p.name}</span>
                 <span className="work-list__tagline">{p.tagline}</span>

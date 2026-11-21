@@ -21,6 +21,7 @@ import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
 import Matrix from './pages/Matrix';
 import './App.css';
+import './projects.css';
 import './worlds.css';
 
 function PageTransition({ children }: { children: ReactNode }) {
