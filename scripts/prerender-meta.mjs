@@ -63,12 +63,6 @@ const ROUTES = [
     og: 'projects',
   },
   {
-    path: '/projects/file-viewer',
-    title: 'File Viewer — Case Study',
-    description: 'Open, search, edit and export Bloomberg DIF files up to 2 GB — instantly.',
-    og: 'projects',
-  },
-  {
     path: '/projects/dsgn',
     title: 'dsgn — Case Study',
     description: 'A cross-AI design philosophy, made usable — and copy-owned, not installed.',

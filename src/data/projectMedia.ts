@@ -34,47 +34,6 @@ const raw: Record<string, Omit<ProjectImage, 'slug'>[]> = {
       h: 920,
     },
   ],
-  'file-viewer': [
-    {
-      name: 'cover',
-      alt: 'Bloomberg File Viewer welcome screen',
-      caption: 'Native WPF app for Bloomberg DIF files up to 2 GB -- open, filter, edit, export.',
-      w: 1280,
-      h: 720,
-    },
-  ],
-  forkfast: [
-    {
-      name: 'cover',
-      alt: 'ForkFast menu with a deliberate 401 incident and the review desk',
-      caption: 'An incident live: the menu API call goes out without its token. The review desk sits on the right.',
-      w: 1440,
-      h: 900,
-    },
-    {
-      name: 'desk',
-      alt: 'ForkFast sign-in with the reviewer desk',
-      caption: 'The reviewer desk: pick a candidate, a ticket and a 3-minute time box.',
-      w: 1440,
-      h: 900,
-    },
-  ],
-  'review-grader': [
-    {
-      name: 'cover',
-      alt: 'Review Grader rubric scoring screen',
-      caption: 'Scoring a team against the R1 rubric -- Build and Security criteria, 1 to 5.',
-      w: 1440,
-      h: 900,
-    },
-    {
-      name: 'questions',
-      alt: 'Review Grader question bank',
-      caption: 'The question bank: reviewer guidance and several phrasings per criterion.',
-      w: 1440,
-      h: 900,
-    },
-  ],
   dsgn: [
     {
       name: 'cover',

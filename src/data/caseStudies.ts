@@ -49,30 +49,6 @@ export const caseStudies: CaseStudy[] = [
     github: 'https://github.com/Dhruvch1244/Selecta',
   },
   {
-    slug: 'file-viewer',
-    name: 'File Viewer',
-    tagline: 'Open, search, edit and export Bloomberg DIF files up to 2 GB -- instantly.',
-    role: 'Solo developer -- parser, indexing engine, and WPF app',
-    summary:
-      'A native Windows (.NET 8 / WPF) app for Bloomberg DIF/GETDATA files that stays responsive on files up to 2 GB: the grid only decodes the rows on screen, and search, sort and filter are engineered to touch as little of the file as possible.',
-    problem:
-      "DIF files from Bloomberg get big -- millions of rows -- and the usual tools either load the whole file into memory and stall, or can't read the format's bulk multi-section shapes at all. People needed to filter, edit and re-export these files without a spreadsheet freezing on them.",
-    approach: [
-      'Background indexing with progress; an unmanaged (non-GC-heap) row index and an LRU decoded-row cache, so the grid only ever decodes the rows currently visible.',
-      'One-pass search and filtering: every term and column filter compiled into a single predicate set, plain substring terms answered on raw UTF-8 bytes before any decoding, rows read in 1 MB sequential runs and scanned in parallel across cores, stale scans cancelled.',
-      'Edits as an overlay on the original file -- add, duplicate, delete, bulk-delete, all undoable -- so the source is never mutated until you export.',
-      'Bulk multi-section files detected by content in either shape they come in, with sections indexed lazily the first time you open them.',
-      'Core library with no UI dependency, xUnit tests per layer, and a BenchmarkDotNet suite that keeps the performance numbers honest.',
-    ],
-    stack: ['C#', '.NET 8', 'WPF', 'xUnit', 'BenchmarkDotNet', 'GitHub Actions'],
-    outcomes: [
-      'Searching 2,000,000 rows for a substring: 1827 ms -> 79 ms. Sorting by an arbitrary column: 10.5 s -> 1.3 s.',
-      'Select-all over millions of rows is stored as a rule, not a list -- it costs nothing, and Extract pulls the selection into its own instant view.',
-      'Tabs, a second window, Excel-ready clipboard copy, and DIF/CSV/TSV/JSON export with a live preview.',
-    ],
-    github: 'https://github.com/Dhruvch1244/File-Viewer',
-  },
-  {
     slug: 'dsgn',
     name: 'dsgn',
     tagline: 'A cross-AI design philosophy, made usable -- and copy-owned, not installed.',
