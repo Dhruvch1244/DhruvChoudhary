@@ -14,13 +14,15 @@ import RoastMe from '../components/RoastMe';
 import { useWorld } from '../lib/worldContext';
 import ProjectImg from '../components/ProjectImg';
 import { projectCover } from '../data/projectMedia';
+import WorldPage from '../worlds/WorldPage';
+import { hasWorldPage } from '../worlds/shared';
 
 const FEATURED = ['selecta', 'dsgn', 'lyric-viewer', 'kaabo'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 const lyricOverlay = getCaseStudy('lyric-viewer')!;
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);
 
-export default function Home() {
+function ConstellationHome() {
   const { world } = useWorld();
   const featured = FEATURED.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
   const heroRef = useRef<HTMLElement>(null);
@@ -238,4 +240,10 @@ export default function Home() {
       </Reveal>
     </>
   );
+}
+
+/** Each world presents this page its own way; Constellation keeps the original. */
+export default function Home() {
+  const { world } = useWorld();
+  return hasWorldPage(world.id) ? <WorldPage world={world.id} page="home" /> : <ConstellationHome />;
 }

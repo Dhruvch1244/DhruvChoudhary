@@ -6,10 +6,13 @@ import ProjectImg from '../components/ProjectImg';
 import { projects } from '../data/content';
 import { caseStudies } from '../data/caseStudies';
 import { projectCover, projectImages } from '../data/projectMedia';
+import WorldPage from '../worlds/WorldPage';
+import { hasWorldPage } from '../worlds/shared';
+import { useWorld } from '../lib/worldContext';
 
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 
-export default function Projects() {
+function ConstellationProjects() {
   return (
     <>
       <PageHeader
@@ -89,4 +92,10 @@ export default function Projects() {
       </div>
     </>
   );
+}
+
+/** Each world presents this page its own way; Constellation keeps the original. */
+export default function Projects() {
+  const { world } = useWorld();
+  return hasWorldPage(world.id) ? <WorldPage world={world.id} page="projects" /> : <ConstellationProjects />;
 }
