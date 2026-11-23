@@ -57,6 +57,18 @@ const ROUTES = [
     og: 'kaabo',
   },
   {
+    path: '/projects/selecta',
+    title: 'Selecta — Case Study',
+    description: 'A local AI DJ: describe the set, it builds and performs it from your own library.',
+    og: 'projects',
+  },
+  {
+    path: '/projects/file-viewer',
+    title: 'File Viewer — Case Study',
+    description: 'Open, search, edit and export Bloomberg DIF files up to 2 GB — instantly.',
+    og: 'projects',
+  },
+  {
     path: '/projects/dsgn',
     title: 'dsgn — Case Study',
     description: 'A cross-AI design philosophy, made usable — and copy-owned, not installed.',

@@ -15,7 +15,7 @@ import { useWorld } from '../lib/worldContext';
 import ProjectImg from '../components/ProjectImg';
 import { projectCover } from '../data/projectMedia';
 
-const FEATURED = ['dsgn', 'kaabo', 'lyric-viewer', 'investlytic'];
+const FEATURED = ['selecta', 'dsgn', 'lyric-viewer', 'kaabo'];
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 const lyricOverlay = getCaseStudy('lyric-viewer')!;
 const TICKER = skillGroups.flatMap((g) => g.items).filter((_, i) => i % 2 === 0).slice(0, 10);

@@ -24,6 +24,55 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'selecta',
+    name: 'Selecta',
+    tagline: 'A local AI DJ: describe the set, it builds and performs it from your own library.',
+    role: 'Solo developer -- audio engine, analysis core, set planner, and UI',
+    summary:
+      'Type what you want -- "crazy DnB", "friends are coming, Bollywood", "Seedhe Maut hip hop" -- and Selecta picks, orders and performs a set from the music already on your machine: beatmatched, phrase-aware transitions, effects with a reason behind every one, keylock, and lyrics synced to what is actually playing.',
+    problem:
+      "Auto-mix features shuffle and crossfade; they don't plan. A real DJ set has an arc -- key and tempo that move on purpose, energy that builds and releases, transitions that land on phrase boundaries -- and the effects are decisions, not decoration. The goal was software that makes those decisions the way a DJ would, locally, from your own library.",
+    approach: [
+      'Set planner: prompt -> intent -> track selection -> beam-search ordering over key, tempo and an energy arc -> phrase-aligned cue points. A conductor then performs blends, bass swaps, double drops, filter mixes, echo-outs, slams, backspins, rewinds and loop rolls on phrase boundaries.',
+      'FX director with intent, not dice: tension and release over sections and lyrics -- builds into drops, hits on the one, throws into breakdowns -- plus a live FX pad.',
+      'Optional AI curation through the Claude CLI: intent refinement, vetting tracks by real song knowledge (bangers vs ballads), running order and DJ moments. The rules engine works without it.',
+      'Audio plays in the webview (Web Audio: one sample-accurate clock, AudioWorklets) while Rust does the heavy offline work -- decode, analysis, stems via Demucs, keylock via a WASM time-stretcher rendered per track.',
+      'Physical separation enforced by CI: the Rust core cannot import Tauri (it builds on a runner with no webkit), the audio engine cannot import React, and every background job goes through one scheduler with priorities and cancellation.',
+      'UI built on dsgn components in its "Studio" voice -- an FL-Studio-inspired dark/light design system documented in its own DESIGN.md.',
+    ],
+    stack: ['Rust', 'Tauri 2', 'React', 'TypeScript', 'Web Audio', 'SQLite', 'Demucs', 'Claude CLI'],
+    outcomes: [
+      'A prompt becomes a planned, beatmatched set performed end to end -- selection, ordering, transitions and FX.',
+      'Stems, vocal kills, acapella builds and mashups with a vocal-clash guard; keylock so tempo changes keep the key.',
+      'Shipped feature by feature through a public roadmap: one branch and one pull request per milestone, on a protected main.',
+    ],
+    github: 'https://github.com/Dhruvch1244/Selecta',
+  },
+  {
+    slug: 'file-viewer',
+    name: 'File Viewer',
+    tagline: 'Open, search, edit and export Bloomberg DIF files up to 2 GB -- instantly.',
+    role: 'Solo developer -- parser, indexing engine, and WPF app',
+    summary:
+      'A native Windows (.NET 8 / WPF) app for Bloomberg DIF/GETDATA files that stays responsive on files up to 2 GB: the grid only decodes the rows on screen, and search, sort and filter are engineered to touch as little of the file as possible.',
+    problem:
+      "DIF files from Bloomberg get big -- millions of rows -- and the usual tools either load the whole file into memory and stall, or can't read the format's bulk multi-section shapes at all. People needed to filter, edit and re-export these files without a spreadsheet freezing on them.",
+    approach: [
+      'Background indexing with progress; an unmanaged (non-GC-heap) row index and an LRU decoded-row cache, so the grid only ever decodes the rows currently visible.',
+      'One-pass search and filtering: every term and column filter compiled into a single predicate set, plain substring terms answered on raw UTF-8 bytes before any decoding, rows read in 1 MB sequential runs and scanned in parallel across cores, stale scans cancelled.',
+      'Edits as an overlay on the original file -- add, duplicate, delete, bulk-delete, all undoable -- so the source is never mutated until you export.',
+      'Bulk multi-section files detected by content in either shape they come in, with sections indexed lazily the first time you open them.',
+      'Core library with no UI dependency, xUnit tests per layer, and a BenchmarkDotNet suite that keeps the performance numbers honest.',
+    ],
+    stack: ['C#', '.NET 8', 'WPF', 'xUnit', 'BenchmarkDotNet', 'GitHub Actions'],
+    outcomes: [
+      'Searching 2,000,000 rows for a substring: 1827 ms -> 79 ms. Sorting by an arbitrary column: 10.5 s -> 1.3 s.',
+      'Select-all over millions of rows is stored as a rule, not a list -- it costs nothing, and Extract pulls the selection into its own instant view.',
+      'Tabs, a second window, Excel-ready clipboard copy, and DIF/CSV/TSV/JSON export with a live preview.',
+    ],
+    github: 'https://github.com/Dhruvch1244/File-Viewer',
+  },
+  {
     slug: 'dsgn',
     name: 'dsgn',
     tagline: 'A cross-AI design philosophy, made usable -- and copy-owned, not installed.',

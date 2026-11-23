@@ -43,6 +43,13 @@ export default function Projects() {
                   {shots > 1 && <span className="project-card__shots">{shots} screens</span>}
                 </div>
               )}
+              {!cover && (
+                <div className="project-card__media project-card__poster" aria-hidden="true">
+                  <span className="project-card__poster-kind">{p.kind}</span>
+                  <span className="project-card__poster-stat">{p.stat}</span>
+                  <span className="project-card__poster-stack">{p.stack.slice(0, 4).join('  /  ')}</span>
+                </div>
+              )}
               <div className="project-card__body">
                 <div className="project-card__head">
                   <span className="project-card__num">{String(i + 1).padStart(2, '0')}</span>

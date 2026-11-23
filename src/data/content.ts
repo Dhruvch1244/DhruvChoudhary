@@ -104,9 +104,26 @@ export type Project = {
   stack: string[];
   github?: string;
   liveUrl?: string;
+  /** year it was last actively built */
+  year: number;
+  kind: 'desktop app' | 'web app' | 'platform' | 'game' | 'dev tool' | 'research';
+  /** the one number or fact that sells it -- worlds reuse this in their own voice */
+  stat: string;
 };
 
 export const projects: Project[] = [
+  {
+    slug: 'selecta',
+    name: 'Selecta',
+    tagline: 'a local AI DJ -- describe the set, it builds and performs it from your own library',
+    description:
+      'Type "crazy DnB" or "friends are coming, Bollywood" and Selecta picks, orders and performs a set from your own music: beatmatched, phrase-aware transitions, an FX director that builds into drops, stems, keylock, and optional AI curation through the Claude CLI. Tauri 2 shell, Rust analysis core, React UI on dsgn.',
+    stack: ['Rust', 'Tauri 2', 'React', 'Web Audio', 'TypeScript', 'Claude CLI'],
+    github: 'https://github.com/Dhruvch1244/Selecta',
+    year: 2026,
+    kind: 'desktop app',
+    stat: 'prompt -> full beatmatched set',
+  },
   {
     slug: 'dsgn',
     name: 'dsgn',
@@ -116,6 +133,22 @@ export const projects: Project[] = [
     stack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Radix UI', 'Node.js CLI'],
     github: 'https://github.com/dhruvch1244/design',
     liveUrl: 'https://design.dhruvchoudhary.com',
+    year: 2026,
+    kind: 'dev tool',
+    stat: '56 components, 6 AI tools',
+  },
+  {
+    slug: 'lyric-viewer',
+    name: 'Lyric Overlay',
+    tagline: 'fullscreen beat-aware lyric overlay for Windows',
+    description:
+      'Detects whatever is playing system-wide, shows synced word-level lyrics over nine generative visual presets -- liquid GPU fields, a spinning vinyl deck, a wormhole that anticipates the drop.',
+    stack: ['Rust', 'Tauri v2', 'Canvas/WebGL', 'Windows SMTC'],
+    github: 'https://github.com/Dhruvch1244/lyric-viewer',
+    liveUrl: 'https://lyricoverlay.dhruvchoudhary.com/',
+    year: 2026,
+    kind: 'desktop app',
+    stat: 'installer 116MB -> 30MB',
   },
   {
     slug: 'kaabo',
@@ -126,15 +159,33 @@ export const projects: Project[] = [
     stack: ['Node.js', 'Express', 'Socket.IO'],
     github: 'https://github.com/Dhruvch1244/kaabo',
     liveUrl: 'https://kaabo.dhruvchoudhary.com/',
+    year: 2026,
+    kind: 'game',
+    stat: '2-8 players, zero installs',
   },
   {
-    slug: 'lyric-viewer',
-    name: 'Lyric Player',
-    tagline: 'fullscreen beat-aware lyric overlay for Windows',
+    slug: 'file-viewer',
+    name: 'File Viewer',
+    tagline: 'native Windows viewer/editor for Bloomberg DIF files up to 2 GB',
     description:
-      'Detects whatever is playing system-wide, shows synced word-level lyrics over nine generative visual presets -- liquid GPU fields, a spinning vinyl deck, a wormhole that anticipates the drop.',
-    stack: ['Electron', 'Tauri', 'Canvas/WebGL', 'Windows SMTC'],
-    github: 'https://github.com/Dhruvch1244/lyric-viewer',
+      'A .NET 8 / WPF desktop app that opens multi-gigabyte Bloomberg DIF/GETDATA files instantly: background indexing, a virtualized grid that only decodes on-screen rows, one-pass parallel search and filtering that rejects rows on raw bytes before decoding, inline editing with full undo, and DIF/CSV/TSV/JSON export.',
+    stack: ['C#', '.NET 8', 'WPF', 'xUnit', 'BenchmarkDotNet'],
+    github: 'https://github.com/Dhruvch1244/File-Viewer',
+    year: 2026,
+    kind: 'desktop app',
+    stat: 'search 2M rows: 1827ms -> 79ms',
+  },
+  {
+    slug: 'fauxnance',
+    name: 'Fauxnance',
+    tagline: 'event-driven trading platform -- Kafka, microservices, an analytics side-car',
+    description:
+      'Angular frontend, NestJS auth issuing JWTs, a Spring Boot/MyBatis trade API that publishes orders to Kafka, a trade executor that settles order + cash + position in one JDBC transaction against Postgres, and a DuckDB/Streamlit analytics side-car fed by a read-only ETL. Everything in Docker; Kafka on its own stack to simulate a separate host.',
+    stack: ['Spring Boot', 'Kafka', 'NestJS', 'Angular', 'Postgres', 'DuckDB', 'Docker'],
+    github: 'https://github.com/Dhruvch1244/trading-system',
+    year: 2026,
+    kind: 'platform',
+    stat: '7 services, 1 transaction per trade',
   },
   {
     slug: 'investlytic',
@@ -143,6 +194,45 @@ export const projects: Project[] = [
     description:
       'Next.js trading platform layering reinforcement-learning recommendations on live market data -- improved trading decision accuracy 50% in evaluation. Companion research published on SSRN.',
     stack: ['Next.js', 'Express', 'Python', 'Firebase'],
+    year: 2025,
+    kind: 'research',
+    stat: '+50% decision accuracy',
+  },
+  {
+    slug: 'batchpilot',
+    name: 'BatchPilot',
+    tagline: 'SSH environment manager, browser terminal and file-transfer console for batch ops',
+    description:
+      'Named environments (DEV, UAT, custom) reached over SSH with PuTTY .ppk keys: a full xterm.js terminal bridged to a PTY over WebSocket, one-off Quick Execute, an SFTP file manager, a YARN applications view, a pipeline stage tracker and an S3 explorer -- Spring Boot backend, Angular 17 signals frontend, shipped as one zip.',
+    stack: ['Spring Boot', 'Angular 17', 'xterm.js', 'SSH/SFTP', 'WebSocket'],
+    github: 'https://github.com/Dhruvch1244/BatchPilot',
+    year: 2026,
+    kind: 'dev tool',
+    stat: 'terminal + SFTP + YARN in one tab',
+  },
+  {
+    slug: 'review-grader',
+    name: 'Review Grader',
+    tagline: 'offline-first scoring for 144 people across 4 capstone reviews',
+    description:
+      'Runs as one instance on a host laptop; reviewers join over WiFi. Rubric baselines per team, per-student Q&A deltas and a grace mark, all on SQLite -- with an IndexedDB write queue so scoring keeps working when the WiFi drops mid-review and syncs when it comes back.',
+    stack: ['Angular 17', 'Express', 'TypeScript', 'SQLite', 'IndexedDB'],
+    github: 'https://github.com/Dhruvch1244/Review-Grader',
+    year: 2026,
+    kind: 'web app',
+    stat: '144 people, works offline',
+  },
+  {
+    slug: 'forkfast',
+    name: 'ForkFast',
+    tagline: 'an incident-review game: a food-delivery app shipped with 15 bugs to fix in order',
+    description:
+      'Angular 21 (zoneless, signals) food-delivery app where each fix unlocks the next screen, plus a reviewer desk that resets the code per candidate, archives their diff, times a 3-minute box and briefs the reviewer with the questions to ask.',
+    stack: ['Angular 21', 'Signals', 'Vitest', 'TypeScript'],
+    github: 'https://github.com/Dhruvch1244/Test-Game',
+    year: 2026,
+    kind: 'game',
+    stat: '15 incidents, 3 minutes each',
   },
   {
     slug: 'spark',
@@ -150,6 +240,10 @@ export const projects: Project[] = [
     tagline: 'smart parking reservation system',
     description: 'Mobile app for reserving parking slots in real time, paired with an admin dashboard for live occupancy monitoring.',
     stack: ['React', 'Express', 'MongoDB Atlas'],
+    github: 'https://github.com/Dhruvch1244/Smart-parking-system',
+    year: 2024,
+    kind: 'web app',
+    stat: '156 slots read from CCTV',
   },
 ];
 
