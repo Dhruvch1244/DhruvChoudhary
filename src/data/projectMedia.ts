@@ -4,6 +4,77 @@
 export type ProjectImage = { slug: string; name: string; alt: string; caption: string; w: number; h: number };
 
 const raw: Record<string, Omit<ProjectImage, 'slug'>[]> = {
+  selecta: [
+    {
+      name: 'cover',
+      alt: 'Selecta mid-transition in a planned DnB set',
+      caption: 'Mid-set: a planned "crazy DnB" set, deck A handing over to deck B with the bar lines aligned.',
+      w: 1480,
+      h: 920,
+    },
+    {
+      name: 'fx-live',
+      alt: 'Selecta FX director and live FX pad',
+      caption: 'The FX director at work -- a roll building into the drop, with the live FX pad below.',
+      w: 1480,
+      h: 920,
+    },
+    {
+      name: 'studio-dark',
+      alt: 'Selecta studio, dark theme',
+      caption: 'The "Studio" voice from dsgn: two decks, mixer, browser. Deck B synced to A.',
+      w: 1480,
+      h: 920,
+    },
+    {
+      name: 'studio-light',
+      alt: 'Selecta studio, light theme',
+      caption: 'Same studio in the light theme -- one token swap, nothing else.',
+      w: 1480,
+      h: 920,
+    },
+  ],
+  'file-viewer': [
+    {
+      name: 'cover',
+      alt: 'Bloomberg File Viewer welcome screen',
+      caption: 'Native WPF app for Bloomberg DIF files up to 2 GB -- open, filter, edit, export.',
+      w: 1280,
+      h: 720,
+    },
+  ],
+  forkfast: [
+    {
+      name: 'cover',
+      alt: 'ForkFast menu with a deliberate 401 incident and the review desk',
+      caption: 'An incident live: the menu API call goes out without its token. The review desk sits on the right.',
+      w: 1440,
+      h: 900,
+    },
+    {
+      name: 'desk',
+      alt: 'ForkFast sign-in with the reviewer desk',
+      caption: 'The reviewer desk: pick a candidate, a ticket and a 3-minute time box.',
+      w: 1440,
+      h: 900,
+    },
+  ],
+  'review-grader': [
+    {
+      name: 'cover',
+      alt: 'Review Grader rubric scoring screen',
+      caption: 'Scoring a team against the R1 rubric -- Build and Security criteria, 1 to 5.',
+      w: 1440,
+      h: 900,
+    },
+    {
+      name: 'questions',
+      alt: 'Review Grader question bank',
+      caption: 'The question bank: reviewer guidance and several phrasings per criterion.',
+      w: 1440,
+      h: 900,
+    },
+  ],
   dsgn: [
     {
       name: 'cover',
@@ -111,7 +182,8 @@ const raw: Record<string, Omit<ProjectImage, 'slug'>[]> = {
     {
       name: 'ghost',
       alt: 'Ghost preset',
-      caption: 'Ghost -- lyrics and the cloud, nothing else: ~95% less CPU, for reading the words or running over a game.',
+      caption:
+        'Ghost -- lyrics and the cloud, nothing else: ~95% less CPU, for reading the words or running over a game.',
       w: 1424,
       h: 745,
     },

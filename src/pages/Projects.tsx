@@ -6,10 +6,13 @@ import ProjectImg from '../components/ProjectImg';
 import { projects } from '../data/content';
 import { caseStudies } from '../data/caseStudies';
 import { projectCover, projectImages } from '../data/projectMedia';
+import WorldPage from '../worlds/WorldPage';
+import { hasWorldPage } from '../worlds/shared';
+import { useWorld } from '../lib/worldContext';
 
 const CASE_STUDY_SLUGS = new Set(caseStudies.map((c) => c.slug));
 
-export default function Projects() {
+function ConstellationProjects() {
   return (
     <>
       <PageHeader
@@ -41,6 +44,13 @@ export default function Projects() {
                     sizes={featured ? '(max-width: 860px) 100vw, 960px' : '(max-width: 860px) 100vw, 480px'}
                   />
                   {shots > 1 && <span className="project-card__shots">{shots} screens</span>}
+                </div>
+              )}
+              {!cover && (
+                <div className="project-card__media project-card__poster" aria-hidden="true">
+                  <span className="project-card__poster-kind">{p.kind}</span>
+                  <span className="project-card__poster-stat">{p.stat}</span>
+                  <span className="project-card__poster-stack">{p.stack.slice(0, 4).join('  /  ')}</span>
                 </div>
               )}
               <div className="project-card__body">
@@ -82,4 +92,10 @@ export default function Projects() {
       </div>
     </>
   );
+}
+
+/** Each world presents this page its own way; Constellation keeps the original. */
+export default function Projects() {
+  const { world } = useWorld();
+  return hasWorldPage(world.id) ? <WorldPage world={world.id} page="projects" /> : <ConstellationProjects />;
 }
