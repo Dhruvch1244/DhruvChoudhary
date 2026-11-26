@@ -164,30 +164,6 @@ export const projects: Project[] = [
     stat: '2-8 players, zero installs',
   },
   {
-    slug: 'file-viewer',
-    name: 'File Viewer',
-    tagline: 'native Windows viewer/editor for Bloomberg DIF files up to 2 GB',
-    description:
-      'A .NET 8 / WPF desktop app that opens multi-gigabyte Bloomberg DIF/GETDATA files instantly: background indexing, a virtualized grid that only decodes on-screen rows, one-pass parallel search and filtering that rejects rows on raw bytes before decoding, inline editing with full undo, and DIF/CSV/TSV/JSON export.',
-    stack: ['C#', '.NET 8', 'WPF', 'xUnit', 'BenchmarkDotNet'],
-    github: 'https://github.com/Dhruvch1244/File-Viewer',
-    year: 2026,
-    kind: 'desktop app',
-    stat: 'search 2M rows: 1827ms -> 79ms',
-  },
-  {
-    slug: 'fauxnance',
-    name: 'Fauxnance',
-    tagline: 'event-driven trading platform -- Kafka, microservices, an analytics side-car',
-    description:
-      'Angular frontend, NestJS auth issuing JWTs, a Spring Boot/MyBatis trade API that publishes orders to Kafka, a trade executor that settles order + cash + position in one JDBC transaction against Postgres, and a DuckDB/Streamlit analytics side-car fed by a read-only ETL. Everything in Docker; Kafka on its own stack to simulate a separate host.',
-    stack: ['Spring Boot', 'Kafka', 'NestJS', 'Angular', 'Postgres', 'DuckDB', 'Docker'],
-    github: 'https://github.com/Dhruvch1244/trading-system',
-    year: 2026,
-    kind: 'platform',
-    stat: '7 services, 1 transaction per trade',
-  },
-  {
     slug: 'investlytic',
     name: 'Investlytic',
     tagline: 'RL-driven stock trading platform',
@@ -209,30 +185,6 @@ export const projects: Project[] = [
     year: 2026,
     kind: 'dev tool',
     stat: 'terminal + SFTP + YARN in one tab',
-  },
-  {
-    slug: 'review-grader',
-    name: 'Review Grader',
-    tagline: 'offline-first scoring for 144 people across 4 capstone reviews',
-    description:
-      'Runs as one instance on a host laptop; reviewers join over WiFi. Rubric baselines per team, per-student Q&A deltas and a grace mark, all on SQLite -- with an IndexedDB write queue so scoring keeps working when the WiFi drops mid-review and syncs when it comes back.',
-    stack: ['Angular 17', 'Express', 'TypeScript', 'SQLite', 'IndexedDB'],
-    github: 'https://github.com/Dhruvch1244/Review-Grader',
-    year: 2026,
-    kind: 'web app',
-    stat: '144 people, works offline',
-  },
-  {
-    slug: 'forkfast',
-    name: 'ForkFast',
-    tagline: 'an incident-review game: a food-delivery app shipped with 15 bugs to fix in order',
-    description:
-      'Angular 21 (zoneless, signals) food-delivery app where each fix unlocks the next screen, plus a reviewer desk that resets the code per candidate, archives their diff, times a 3-minute box and briefs the reviewer with the questions to ask.',
-    stack: ['Angular 21', 'Signals', 'Vitest', 'TypeScript'],
-    github: 'https://github.com/Dhruvch1244/Test-Game',
-    year: 2026,
-    kind: 'game',
-    stat: '15 incidents, 3 minutes each',
   },
   {
     slug: 'spark',

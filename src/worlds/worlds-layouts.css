@@ -10,6 +10,12 @@
 
 .world-page img {
   max-width: 100%;
+  /* Images carry their intrinsic width/height attributes (to reserve
+     space while loading); without height:auto the height attribute wins
+     when max-width shrinks the width on phones, and the image stretches.
+     Rules below that crop to a box (height: 100% + object-fit) override
+     this because they come later. */
+  height: auto;
   display: block;
 }
 

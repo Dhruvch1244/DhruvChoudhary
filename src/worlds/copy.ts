@@ -10,12 +10,8 @@ export const commitLine: Record<string, string> = {
   dsgn: "feat(cli): dsgn add button -- copy, don't depend",
   'lyric-viewer': 'perf: electron -> tauri, installer 116MB -> 30MB',
   kaabo: 'feat(net): server-authoritative, no devtools peeking',
-  'file-viewer': 'perf(search): reject rows on raw bytes, 1827ms -> 79ms',
-  fauxnance: 'feat(exec): order + cash + position in one transaction',
   investlytic: 'research: lstm + ppo, +50% decision accuracy',
   batchpilot: 'feat(term): xterm.js <-> pty over websocket',
-  'review-grader': 'feat(sync): indexeddb queue, offline edits win',
-  forkfast: 'chore: ship 15 bugs on purpose',
   spark: 'feat(cv): laplacian slot detection on cctv',
 };
 
@@ -25,12 +21,8 @@ export const arcadeStage: Record<string, { stage: string; boss: string }> = {
   dsgn: { stage: 'THE REGISTRY', boss: 'generic AI-made UI' },
   'lyric-viewer': { stage: 'THE WORMHOLE', boss: 'a 116MB installer' },
   kaabo: { stage: 'THE TABLE', boss: 'the devtools peeker' },
-  'file-viewer': { stage: '2 GB CAVE', boss: 'the frozen spreadsheet' },
-  fauxnance: { stage: 'KAFKA CITY', boss: 'the half-written trade' },
   investlytic: { stage: 'THE MARKET', boss: 'the random walk' },
   batchpilot: { stage: 'SERVER ROOM', boss: '12 open PuTTY windows' },
-  'review-grader': { stage: 'REVIEW DAY', boss: 'the WiFi dropping' },
-  forkfast: { stage: '15 INCIDENTS', boss: 'INC-15' },
   spark: { stage: 'THE LOT', boss: 'circling for a spot' },
 };
 
@@ -40,12 +32,8 @@ export const ironLift: Record<string, { lift: string; note: string }> = {
   dsgn: { lift: 'Overhead press', note: "Lifting everyone else's UI, not just mine." },
   'lyric-viewer': { lift: 'Cut phase', note: 'Dropped 74% of the installer weight, kept every bit of strength.' },
   kaabo: { lift: 'Conditioning', note: '2-8 players, real time, no rest between sets.' },
-  'file-viewer': { lift: 'Back squat', note: '2 GB on the bar, 79 ms reps.' },
-  fauxnance: { lift: 'Full-body circuit', note: 'Seven services, one clean rep each.' },
   investlytic: { lift: 'Periodized block', note: 'Trained on market data. +50% on the test.' },
   batchpilot: { lift: 'Grip work', note: 'One hand on every server at once.' },
-  'review-grader': { lift: 'Endurance', note: '144 athletes scored, even when the WiFi drops.' },
-  forkfast: { lift: 'Coaching drills', note: '15 drills, 3 minutes each, one at a time.' },
   spark: { lift: 'Warm-up set', note: 'First full-stack lift. Form still counts.' },
 };
 
@@ -65,12 +53,8 @@ export const teamRadio: Record<string, string> = {
   dsgn: "Same setup for every car. Copy the parts, don't rent them.",
   'lyric-viewer': "We've lost 86 megs. Car feels much lighter.",
   kaabo: "Race control confirms: no peeking at other cars' cards.",
-  'file-viewer': 'Purple sector. 79 milliseconds on a 2 GB lap.',
-  fauxnance: 'Box this lap: order, cash, position -- all in one stop.',
   investlytic: 'Strategy model says box now. Plus fifty on the undercut.',
   batchpilot: 'Telemetry from every environment, one screen.',
-  'review-grader': 'Radio lost. Car continues. Syncs when we get it back.',
-  forkfast: 'Fifteen incidents on track. One at a time, three minutes each.',
   spark: 'Pit lane full? Check the board. 75 of 156 free.',
 };
 
@@ -106,16 +90,6 @@ export const journal: Record<string, { time: string; entry: string; cat: string 
     entry: 'game night over one hotspot. the server holds the cards, so nobody can peek. someone tried.',
     cat: 'slapped the discard pile. wrong rank. penalty.',
   },
-  'file-viewer': {
-    time: '23:58',
-    entry: 'two million rows. search went from 1.8 seconds to 79 milliseconds. made tea.',
-    cat: 'unimpressed by numbers. impressed by tea.',
-  },
-  fauxnance: {
-    time: '01:55',
-    entry: 'seven containers humming. kafka living on its own little island.',
-    cat: 'slept on the warm laptop. production-tested.',
-  },
   investlytic: {
     time: '02:20',
     entry: 'taught an agent to hold instead of panic. wrote a paper about it.',
@@ -125,16 +99,6 @@ export const journal: Record<string, { time: string; entry: string; cat: string 
     time: '00:15',
     entry: 'closed twelve PuTTY windows, forever.',
     cat: 'prefers one window. to sit in.',
-  },
-  'review-grader': {
-    time: '22:30',
-    entry: 'the wifi will drop mid-review. so it just... keeps working.',
-    cat: 'knocked the router off the desk to test it',
-  },
-  forkfast: {
-    time: '01:01',
-    entry: "shipped a food app with fifteen bugs. on purpose. it's a game, I promise.",
-    cat: 'ate INC-07',
   },
   spark: {
     time: '23:10',
